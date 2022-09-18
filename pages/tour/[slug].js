@@ -10,14 +10,13 @@ import "react-date-range/dist/styles.css";
 import Skeleton from "@mui/material/Skeleton";
 import { useRouter } from "next/router";
 import "react-date-range/dist/theme/default.css";
-import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
+// import calendar from "react-calendar";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import TextField from "@mui/material/TextField";
 import renderHTML from "react-render-html";
-import { DateRange } from "react-date-range";
+//import { DateRange } from "react-date-range";
 import NumberFormat from "react-number-format";
 import AppointmentModal from "../../components/appointmentModal";
 import WatchItems from "../../components/watchItems";
@@ -45,13 +44,12 @@ import {
   RiHeartLine,
 } from "react-icons/ri";
 import PropTypes from "prop-types";
-var dateFormat = require("dateformat");
+import dateFormat from "dateformat";
 
 SwiperCore.use([Autoplay, Navigation]);
 
 const tourURL = process.env.NEXT_PUBLIC_WORDPRESS_URL + "/wp-json/wp/v2/tours";
-const calendarScript =
-  "https://fareharbor.com/embeds/script/calendar/royalcosterdiamondbv/?fallback=simple";
+
 const form2Date = [
   "00 : 00",
   "01 : 00",
@@ -507,8 +505,10 @@ export default function TourDetail(props) {
             )}
           </div>
           <div className="highlight-panel pe-lg-5">
-            <h3 className="title text-uppercase mb-4">Highlights</h3>
-            {tourData ? (
+          {(tourData && tourData.acf.highlights.highlights.length > 0) && (
+              <h3 className="title text-uppercase mb-4">Highlights</h3>
+            )}
+            {(tourData && tourData.acf.highlights.highlights.length > 0) ? (
               <ul className="description">
                 {tourData.acf.highlights.highlights.map((item, index) => (
                   <li className="mb-4" key={index}>
@@ -518,41 +518,7 @@ export default function TourDetail(props) {
               </ul>
             ) : (
               <>
-                <Skeleton
-                  className="mt-3"
-                  variant="text"
-                  animation="wave"
-                  width="100%"
-                  height={30}
-                />
-                <Skeleton
-                  className="mt-3"
-                  variant="text"
-                  animation="wave"
-                  width="100%"
-                  height={30}
-                />
-                <Skeleton
-                  className="mt-3"
-                  variant="text"
-                  animation="wave"
-                  width="100%"
-                  height={30}
-                />
-                <Skeleton
-                  className="mt-3"
-                  variant="text"
-                  animation="wave"
-                  width="100%"
-                  height={30}
-                />
-                <Skeleton
-                  className="mt-3"
-                  variant="text"
-                  animation="wave"
-                  width="100%"
-                  height={30}
-                />
+
               </>
             )}
 
