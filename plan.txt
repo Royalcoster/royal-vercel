@@ -1,0 +1,22 @@
+1. Contabo plan
+
+- but new vps server or dedicated vps server
+https://contabo.com/en/dedicated-servers/
+or
+https://contabo.com/en/vds/ (best?)
+
+or
+https://contabo.com/en/vps/ (26.99) is current (xxl)
+
+Then, asl Contabo (pay) to transfer server snapshot from current to new server.
+
+2. buy WP hosting... for app does not matter will be some ip or predefinid url... it matters for staff.
+
+WHY
+
+Because if WP is on same server(url) - no cahe...
+If is on other server... then we can set cache as we want and even better connect WP to cdn
+
+I am 1000% sure this will raise performance very seriously.
+
+this is beggining

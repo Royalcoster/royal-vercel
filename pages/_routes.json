@@ -1,0 +1,42 @@
+{
+  "checkout": {
+    "en": "cart",
+    "nl": "winkelwagentje"
+  },
+  "custom-jewelry": {
+    "nl": "custom-sieraden"
+  },
+  "watch": {
+    "nl": "horloges"
+  },
+  "jewelry": {
+    "nl": "sieraden"
+  },
+  "jewelry-brands": {
+    "nl": "sieraden-merken"
+  },
+  "why-royal-coster": {
+    "nl": "waarom-royal-coster"
+  },
+  "responsibility": {
+    "nl": "verantwoordelijkheid"
+  },
+  "news": {
+    "nl": "nieuws"
+  },
+  "appointment": {
+    "nl": "afspraak"
+  },
+  "tax-refund": {
+    "nl": "belastingteruggave"
+  },
+  "engagement-ring-buying-guide": {
+    "nl": "verloving-ringen-kopen-gids"
+  },
+  "diamond-buying-guide": {
+    "nl": "diamant-kopen-gids"
+  },
+  "our-royal-legacy": {
+    "nl": "onze-koninklijke-geschiedenis"
+  }
+}

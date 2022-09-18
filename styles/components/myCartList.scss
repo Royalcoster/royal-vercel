@@ -1,0 +1,186 @@
+.my-cart-list {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  background: #fff;
+  border: 1px solid #d2d2d2;
+  border-bottom: none;
+  overflow: hidden;
+  @media (max-width: 575px) {
+    padding: 0;
+    // background-color: #e7e7e7;
+  }
+  .checkout_page & .title-panel {
+    .title {
+      font-size: 2.4rem;
+      font-weight: 400;
+    }
+    span {
+      font-size: 1.8rem;
+    }
+  }
+  .accordion-header {
+    color: #000;
+    font-size: 2rem;
+    .accordion-btn {
+      color: #000;
+    }
+    + .accordion-content {
+      opacity: 0;
+      visibility: hidden;
+      height: 0;
+      transition: height .3s;
+    }
+    @media (max-width: 575px) {
+      font-size: 1.6rem;
+      background-color: #e7e7e7;
+    }
+  }
+  .accordion-content.open {
+    opacity: 1;
+    visibility: visible;
+    height: 100%;
+  }
+
+  .myItem-panel {
+    &::before {
+      content: '';
+      position: absolute;
+      left: -20px;
+      right: -20px;
+
+      top: 0;
+      bottom: 0;
+      background: #eee;
+    }
+    @media (max-width: 575px) {
+      border-bottom: 1px solid #a9a9a9;
+      &::before {
+        background-color: #fff;
+      }
+    }
+  }
+  .item-detail {
+    .item-info {
+      .cart-image {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border: 1px solid #d2d2d2;
+        border-radius: 5px;
+        @media (max-width: 575px) {
+          width: 100px;
+          height: 100px;
+        }
+      }
+      .badge {
+        position: absolute;
+        background: #d9d9d9;
+        border-radius: 50%;
+        right: -7px;
+        top: -5px;
+        width: 16px;
+        height: 16px;
+        font-size: 9px;
+        color: #000;
+        @media (max-width: 575px) {
+          width: 26px;
+          height: 26px;
+          font-size: 14px;
+        }
+      }
+      .text-panel {
+        .title {
+          color: #2c2c2c;
+          font-size: 1.6rem;
+          font-weight: 400;
+        }
+        p {
+          color: #2c2c2c;
+          font-size: 1.4rem;
+        }
+        .badge-instock {
+          padding: 0 15px;
+          color: #fff;
+          font-size: 11px;
+          font-weight: 400;
+          border-radius: 5px;
+          background: #0f5503;
+        }
+      }
+    }
+    .item-price {
+      span {
+        color: #2c2c2c;
+        font-size: 1.4rem;
+        font-weight: 400;
+      }
+      .full-price {
+        text-decoration: line-through;
+      }
+      @media (max-width: 575px) {
+        transform: translateY(-100%);
+      }
+    }
+  }
+  .discount-panel {
+    .discount-code {
+      font-size: 1.8rem;
+      font-weight: 500;
+    }
+
+    .discount-code::placeholder {
+      color: #000;
+    }
+    .btn-discount {
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+    @media (max-width: 575px) {
+      background-color: #fff;
+    }
+  }
+  .sub-price {
+    .sub-total {
+      * {
+        color: #000;
+        font-size: 1.8rem;
+        font-weight: 500;
+      }
+    }
+    .shipping-price {
+      .title {
+        font-size: 1.8rem;
+        font-weight: 500;
+      }
+      .content {
+        font-size: 1.6rem;
+        font-weight: 400;
+      }
+    }
+  }
+  .final-price {
+    border-top: 1px solid #d2d2d2;
+    .total-price {
+      * {
+        color: #000;
+        font-size: 1.8rem;
+        font-weight: 700;
+      }
+    }
+    .result-panel {
+      border: 1px solid rgba(2, 24, 37, 0.1);
+      border-radius: 1.2rem;
+      .title {
+        font-size: 1.8rem;
+        font-weight: 500;
+      }
+      .content {
+        span {
+          font-family: FreeSerif;
+            font-style: italic;
+            font-size: 2.4rem;
+        }
+      }
+    }
+  }
+}

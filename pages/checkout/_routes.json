@@ -1,0 +1,16 @@
+{
+  "/": {
+    "nl": "winkelwagentje",
+    "en": "cart"
+  },
+  "information" : {
+    "nl": "informatie"
+  },
+  "payment" : {
+    "nl": "betaling"
+  },
+  "shipping" : {
+    "nl": "verzenden"
+  }
+
+}

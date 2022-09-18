@@ -1,0 +1,17 @@
+ul.greencheck {
+  list-style: none;
+  padding: 2rem 0 0;
+}
+ul.greencheck li {
+  font-size: 14px;
+}
+ul.greencheck li:before {
+  content: '✓  ';
+  color: black;
+  font-size: 12px;
+  font-weight:bold;
+}
+.informations > div {
+  line-height: normal;
+  font-size: 12px;
+}

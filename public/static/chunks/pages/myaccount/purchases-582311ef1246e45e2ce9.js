@@ -1,0 +1,1 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[3992],{54818:function(n,u,_){(window.__NEXT_P=window.__NEXT_P||[]).push(["/myaccount/purchases",function(){return _(62214)}])}},function(n){n.O(0,[6556,8786,2214,9774,2888,179],(function(){return u=54818,n(n.s=u);var u}));var u=n.O();_N_E=u}]);

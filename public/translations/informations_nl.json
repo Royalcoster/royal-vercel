@@ -1,0 +1,16 @@
+{
+  "Male": "Man",
+  "Female": "Vrouw",
+  "Other": "Anders, zeg ik liever niet",
+  "First Name": "Voornaam",
+  "Last Name": "Achternaam",
+  "Country": "Land",
+  "Address": "Adres",
+  "Housenumber": "Huisnummer",
+  "Addition": "Toevoeging",
+  "Postalcode": "Postcode",
+  "City": "Woonplaats",
+  "Phone Number": "Telefoonnummer",
+  "Use an alternative address for my invoice": "Gebruik een ander factuuradres",
+  "gender": "Geslacht"
+}

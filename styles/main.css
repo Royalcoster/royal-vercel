@@ -1,0 +1,7 @@
+@media (min-width: 576px) {
+  .d-sm-none {
+    display: block !important;
+    position: absolute;
+    top: "0px";
+  }
+}

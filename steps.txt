@@ -1,0 +1,9 @@
+Actions needed (recommended)
+
+1. Dedicated WP hosting and transfer to this hosting. (Olek?). Why? In order to get better caching and improve rank even to better.
+2. API remaining on current server.
+3. In order to do this we need domain with SSL.
+4. When all done, we just need to set clodflare to point to vercel app.
+
+SDtep 1 is important.
+ 

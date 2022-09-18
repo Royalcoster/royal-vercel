@@ -1,0 +1,12 @@
+1. Revised CI/CD for all environments - configure company github, ensure access for all developers - 1hr already done
+2. Get & configure domain for Contabo environment - less then 1hr
+3. Update all dependencies to new URLs  - we have environment file. So < 1hr
+4. Setup Edge Caching of Wordpress content for maximum performance - this should be provided automaticly with new WP hosting, nothing to do
+5. Configure SSL for all environments and domains - for Vercel is automatic. For WP automatic. For API (on former royalcoster.com) - 2hrs - i always jam
+6. Configure Siteground Domains -  I guess 1hr
+7. Clone Wordpress to Siteground - Siteground promissing automatic tool. But if not - than 6 hrs at least. if yes - 1hr 
+8. Setup Siteground Hosting - nth to do i guess
+9. Link Vercel deployment to Siteground WP via API / GraphQL  - also setup environment file < 1hr
+10 .Front-end Deployed to Vercel automatic process - whenewer commit on github, deployed to vercel. Then we choose which version is promoted to production - no time
+11. Connect Royal Coster Domain to Vercel project - sereting on cloudflare < 1hr
+12. Add QA for Vercel (Check service) - already configured (Analitycs on vercel meausirng speed and quality) 
