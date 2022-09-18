@@ -1052,10 +1052,10 @@ export default function TourDetail(props) {
                     setSticky(sticky + 1);
                   }}
                 >
-                  Show More Packages         
+                  Show More Packages
                 </button>
               </div>
-            )}
+            )}   
           </div>
         </div>
       </div>
