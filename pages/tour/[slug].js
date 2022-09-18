@@ -1058,7 +1058,7 @@ export default function TourDetail(props) {
             )}
           </div>
         </div>
-      </div>
+      </div>               
       {/* End more tour section */}
 
       {/* Start Schedule section */}
