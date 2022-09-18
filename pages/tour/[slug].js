@@ -1055,7 +1055,7 @@ export default function TourDetail(props) {
                   Show More Packages
                 </button>
               </div>
-            )}   
+            )}
           </div>
         </div>
       </div>
