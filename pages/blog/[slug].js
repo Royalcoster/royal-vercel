@@ -261,9 +261,9 @@ function Page(props) {
   };
 
   useEffect(() => {
-  
+
     if (localStorage.access_token) {
-      setAccessToken(localStorage.access_token);
+      setAccessToken(localStorage.access_token); 
     }
   }, []);
   useEffect(() => {
