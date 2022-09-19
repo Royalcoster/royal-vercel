@@ -261,6 +261,7 @@ function Page(props) {
   };
 
   useEffect(() => {
+    alert("???????????????????")
     if (localStorage.access_token) {
       setAccessToken(localStorage.access_token);
     }
