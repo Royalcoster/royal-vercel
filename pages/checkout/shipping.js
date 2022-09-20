@@ -266,7 +266,7 @@ function Shipping(props) {
  dataLayer.push(dll);
   }, []);
 
-  if (storage) {
+  if (localStorage.shipping && localStorage.billing) {
     if (!JSON.parse(localStorage.cart).subTotal) {
       window.location.href =("/cart");
       return <div></div>;
@@ -275,9 +275,10 @@ function Shipping(props) {
       return <div></div>;
     } else {
       const shippingData = JSON.parse(localStorage.shipping);
-      alert(JSON.stringify(localStorage.billing))
       const billingData = JSON.parse(localStorage.billing);
+
       return (
+
         <div className="checkout_page checkout-shipping">
           <Head>
             <title>Checkout Shipping | Royal Coster</title>
@@ -364,17 +365,17 @@ function Shipping(props) {
                         shippingData.contact.surName}
                     </p>
                   </div>
-                  <div className="text-panel mb-3">
-                    <h4 className="m-0">{locale === "nl" ? "Adres" : "Address"}</h4>
-                    <p className="m-0">
-                      {shippingData.address.street + " " + shippingData.address.apartment}<br/>
-                      {
-                        shippingData.address.zipCode +
-                        " " +
-                        shippingData.address.town}<br/>
-                      { shippingData.address.country}
-                    </p>
-                  </div>
+                      <div className="text-panel mb-3">
+                        <h4 className="m-0">{locale === "nl" ? "Adres" : "Address"}</h4>
+                        <p className="m-0">
+                          {shippingData.address.street + " " + shippingData.address.apartment}<br/>
+                          {
+                            shippingData.address.zipCode +
+                            " " +
+                            shippingData.address.town}<br/>
+                          { shippingData.address.country}
+                        </p>
+                      </div>
                   <div className="text-panel mb-3">
                     <h4 className="m-0">Email</h4>
                     <p className="m-0">
