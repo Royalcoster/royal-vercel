@@ -150,7 +150,7 @@ dataLayer.push(dll);
       setPhoneNumber(personInfo.phoneNumber);
       setStreet(address.street);
       setApartment(address.apartment);
-      setCountry("Netherlands");
+      setCountry(address.country);
       setTown(address.town);
       setZipCode(address.zipCode);
       setAddtion(address.addition);
