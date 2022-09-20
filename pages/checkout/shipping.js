@@ -374,6 +374,7 @@ function Shipping(props) {
                       {/* {"The " + shippingData.address.country} */}
                       Serbia
                     </p>
+                    <p>This is in progress.</p>
                   </div>
                   <div className="text-panel mb-3">
                     <h4 className="m-0">Email</h4>
