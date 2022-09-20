@@ -275,6 +275,7 @@ function Shipping(props) {
       return <div></div>;
     } else {
       const shippingData = JSON.parse(localStorage.shipping);
+      alert(JSON.stringify(localStorage.billing))
       const billingData = JSON.parse(localStorage.billing);
       return (
         <div className="checkout_page checkout-shipping">
@@ -371,7 +372,7 @@ function Shipping(props) {
                         shippingData.address.zipCode +
                         " " +
                         shippingData.address.town}<br/>
-                      {"The " + shippingData.address.country}
+                      { shippingData.address.country}
                     </p>
                   </div>
                   <div className="text-panel mb-3">
