@@ -44,7 +44,8 @@ export default function Information(props) {
   const [addition, setAddtion] = useState();
   const [zipCode, setZipCode] = useState();
   const [town, setTown] = useState();
-  const [country, setCountry] = useState('Netherlands');
+  // const [country, setCountry] = useState('Netherlands');
+  const [country, setCountry] = useState();
   const [phoneNumber, setPhoneNumber] = useState();
   const [billingFirstName, setBillingFirstName] = useState();
   const [billingSurName, setBillingSurName] = useState();
@@ -54,7 +55,8 @@ export default function Information(props) {
   const [billingAddition, setBillingAddtion] = useState();
   const [billingZipCode, setBillingZipCode] = useState();
   const [billingTown, setBillingTown] = useState();
-  const [billingCountry, setBillingCountry] = useState('Netherlands');
+  // const [billingCountry, setBillingCountry] = useState('Netherlands');
+  const [billingCountry, setBillingCountry] = useState();
   const [billingPhoneNumber, setBillingPhoneNumber] = useState();
   const [localStore, setLocalStore] = useState();
   const [errorPhone, setErrorPhone] = useState();
