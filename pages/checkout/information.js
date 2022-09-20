@@ -45,7 +45,7 @@ export default function Information(props) {
   const [zipCode, setZipCode] = useState();
   const [town, setTown] = useState();
   // const [country, setCountry] = useState('Netherlands');
-  const [country, setCountry] = useState();
+  const [country, setCountry] = useState(country);
   const [phoneNumber, setPhoneNumber] = useState();
   const [billingFirstName, setBillingFirstName] = useState();
   const [billingSurName, setBillingSurName] = useState();
@@ -583,7 +583,7 @@ dataLayer.push(dll);
                     name="country"
                     id="country"
                     value={country}
-                    onChange={(e) => this.selectCountry(e)}
+                    onChange={(e) =>{setCountry(e)}}
                     required
                   />
                 </div>
