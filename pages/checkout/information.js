@@ -150,6 +150,7 @@ dataLayer.push(dll);
       setPhoneNumber(personInfo.phoneNumber);
       setStreet(address.street);
       setApartment(address.apartment);
+      // setCountry("Netherlands");
       setCountry(address.country);
       setTown(address.town);
       setZipCode(address.zipCode);
@@ -164,7 +165,8 @@ dataLayer.push(dll);
       setBillingPhoneNumber(personInfo.billingPhoneNumber);
       setBillingStreet(address.billingStreet);
       setBillingApartment(address.billingApartment);
-      setBillingCountry("Netherlands");
+      // setBillingCountry("Netherlands");
+      setBillingCountry(address.country);
       setBillingTown(address.billingTown);
       setBillingZipCode(address.billingZipCode);
       setBillingAddtion(address.billingAddition);
@@ -275,7 +277,8 @@ dataLayer.push(dll);
                     apartment: localStorage.apartment,
                     zipCode: localStorage.zipCode,
                     town: localStorage.town,
-                    country: "Netherlands",
+                    // country: "Netherlands",
+                    country: localStorage.country,
                       phoneNumber: localStorage.phoneNumber,
                   },
                 })
@@ -315,7 +318,8 @@ dataLayer.push(dll);
                     apartment: localStorage.apartment,
                     zipCode: localStorage.zipCode,
                     town: localStorage.town,
-                      country: "Netherlands",
+                      // country: "Netherlands",
+                      country : localStorage.country,
                       phoneNumber: localStorage.phoneNumber,
                   },
                 })
@@ -383,7 +387,8 @@ dataLayer.push(dll);
                 apartment: apartment,
                 zipCode: zipCode,
                 town: town,
-                country:"Netherlands",
+                // country:"Netherlands",
+                country: country,
               },
             })
           );
