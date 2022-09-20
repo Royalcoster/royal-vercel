@@ -371,10 +371,8 @@ function Shipping(props) {
                         shippingData.address.zipCode +
                         " " +
                         shippingData.address.town}<br/>
-                      {/* {"The " + shippingData.address.country} */}
-                      Serbia
+                      {"The " + shippingData.address.country}
                     </p>
-                    <p>This is in progress.</p>
                   </div>
                   <div className="text-panel mb-3">
                     <h4 className="m-0">Email</h4>
