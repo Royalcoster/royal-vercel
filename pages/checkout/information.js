@@ -281,10 +281,11 @@ dataLayer.push(dll);
                     town: localStorage.town,
                     // country: "Netherlands",
                     country: localStorage.country,
-                      phoneNumber: localStorage.phoneNumber,
+                    phoneNumber: localStorage.phoneNumber,
                   },
                 })
               );
+
               localStorage.setItem(
                 "billing",
                 JSON.stringify({
@@ -298,7 +299,8 @@ dataLayer.push(dll);
                     billingApartment: localStorage.billingApartment,
                     billingZipCode: localStorage.billingZipCode,
                     billingTown: localStorage.billingTown,
-                    billingCountry: "Netherlands",
+                    // billingCountry: "Netherlands",
+                    billingCountry: localStorage.billingCountry,
                     billingPhoneNumber: localStorage.billingPhoneNumber,
                   },
                 })
@@ -326,6 +328,7 @@ dataLayer.push(dll);
                   },
                 })
               );
+
               localStorage.setItem(
                 "billing",
                 JSON.stringify({
@@ -577,7 +580,10 @@ dataLayer.push(dll);
                     name="country"
                     id="country"
                     value={country}
-                    onChange={(e) => setCountry(e)}
+                    onChange={(e) => {
+                      setCountry(e);
+                      localStorage.country = e.value;   ///??/?????????????
+                    }}
                     required
                   />
                 </div>
@@ -782,7 +788,10 @@ dataLayer.push(dll);
                     name="country"
                     id="country"
                     value={billingCountry}
-                    onChange={(e) => setBillingCountry(e)}
+                    onChange={(e) => {
+                      setBillingCountry(e);
+                      localStorage.billingCountry = e.value;  
+                    }}
                     required
                   />
                 </div>
