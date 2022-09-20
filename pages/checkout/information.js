@@ -581,7 +581,7 @@ dataLayer.push(dll);
                     id="country"
                     value={country}
                     onChange={(e) => {
-                      setCountry(e);
+                      setCountry(e.target.value);             //////////////SetCountry(e)//////////
                       localStorage.country = e.target.value;   ///??/?????????????
                     }}
                     required
@@ -789,7 +789,7 @@ dataLayer.push(dll);
                     id="country"
                     value={billingCountry}
                     onChange={(e) => {
-                      setBillingCountry(e);
+                      setBillingCountry(e.target.value);           /////////  setBillingCountry(e);
                       localStorage.billingCountry = e.target.value;  //?/?????????????
                     }}
                     required
