@@ -572,15 +572,19 @@ function MyCart(props) {
                 <h3 className="m-0">To be paid:</h3>
                 <p className="m-0">€ {total}</p>
               </div> */}
-                <button onClick={() => {
-                  window.location.href = ((locale == "en") ? "" : "/" + locale) + "/checkout/information"
-                }}
+              <Link
+              href= {((locale == 'en') ? "" : "nl/") + "checkout/information"}
+            >
+                <a>
+                <button
                   className="btn blue-btn"
 
                   disabled={items ? false : true}
                 >
                   {locale === "nl" ? "Ga verder naar Verzendgegevens" : "Proceed to Shipping Details"}
                 </button>
+                </a>
+                </Link>
             </div>
             <div className="summary-info pt-5">
               <div className="d-flex align-items-center mb-3">

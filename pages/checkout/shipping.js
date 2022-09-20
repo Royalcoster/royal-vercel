@@ -19,7 +19,7 @@ const initalOptions = {
 };
 
 function Shipping(props) {
-  const [storage, setStorage] = useState();
+  const [storage, setStorage] = useState(false);
   const [freeShippingMethod, setFreeShippingMethod] = useState(true);
   const router = useRouter();
   const { locale } = useRouter();
@@ -266,7 +266,7 @@ function Shipping(props) {
  dataLayer.push(dll);
   }, []);
 
-  if (localStorage.shipping && localStorage.billing) {
+  if (storage) {
     if (!JSON.parse(localStorage.cart).subTotal) {
       window.location.href =("/cart");
       return <div></div>;

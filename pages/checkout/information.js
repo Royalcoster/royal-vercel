@@ -348,7 +348,7 @@ dataLayer.push(dll);
               );
               localStorage.setItem('customerInfo', localStorage.email);
               localStorage.setItem('billingCustomerInfo', localStorage.billingEmail);
-              window.location.href = ((locale == "en") ? "" : "/" + locale) + "/checkout/shipping";
+              router.push("/checkout/shipping");
 
             }
           })
