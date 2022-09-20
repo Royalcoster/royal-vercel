@@ -45,7 +45,7 @@ export default function Information(props) {
   const [zipCode, setZipCode] = useState();
   const [town, setTown] = useState();
   // const [country, setCountry] = useState('Netherlands');
-  const [country, setCountry] = useState(country);
+  const [country, setCountry] = useState();
   const [phoneNumber, setPhoneNumber] = useState();
   const [billingFirstName, setBillingFirstName] = useState();
   const [billingSurName, setBillingSurName] = useState();
@@ -167,8 +167,7 @@ dataLayer.push(dll);
       setBillingPhoneNumber(personInfo.billingPhoneNumber);
       setBillingStreet(address.billingStreet);
       setBillingApartment(address.billingApartment);
-      // setBillingCountry("Netherlands");
-      setBillingCountry(address.billingCountry);
+      setBillingCountry("Netherlands");
       setBillingTown(address.billingTown);
       setBillingZipCode(address.billingZipCode);
       setBillingAddtion(address.billingAddition);
@@ -234,9 +233,6 @@ dataLayer.push(dll);
                 email: true,
 
               },
-              country: {
-                required: true,
-              },        ///////////////no
               phoneNumber: {
                 phone: true,
                 required: true
@@ -288,7 +284,6 @@ dataLayer.push(dll);
                   },
                 })
               );
-
               localStorage.setItem(
                 "billing",
                 JSON.stringify({
@@ -302,8 +297,7 @@ dataLayer.push(dll);
                     billingApartment: localStorage.billingApartment,
                     billingZipCode: localStorage.billingZipCode,
                     billingTown: localStorage.billingTown,
-                    // billingCountry: "Netherlands",
-                    billingCountry: localStorage.billingCountry,
+                    billingCountry: "Netherlands",
                     billingPhoneNumber: localStorage.billingPhoneNumber,
                   },
                 })
@@ -325,13 +319,12 @@ dataLayer.push(dll);
                     apartment: localStorage.apartment,
                     zipCode: localStorage.zipCode,
                     town: localStorage.town,
-                      // country: "Netherlands",
-                      country : localStorage.country,
-                      phoneNumber: localStorage.phoneNumber,
+                    // country: "Netherlands",
+                    country: localStorage.country,
+                    phoneNumber: localStorage.phoneNumber,
                   },
                 })
               );
-
               localStorage.setItem(
                 "billing",
                 JSON.stringify({
@@ -345,8 +338,7 @@ dataLayer.push(dll);
                     billingApartment: localStorage.billingApartment,
                     billingZipCode: localStorage.billingZipCode,
                     billingTown: localStorage.billingTown,
-                    // billingCountry: "Netherlands",
-                    billingCountry: localStorage.billingCountry,
+                    billingCountry: "Netherlands",
                     billingPhoneNumber: localStorage.billingPhoneNumber,
                   },
                 })
@@ -414,8 +406,7 @@ dataLayer.push(dll);
                 billingApartment: billingApartment,
                 billingZipCode: billingZipCode,
                 billingTown: billingTown,
-                // billingCountry:"Netherlands",
-                billingCountry: localStorage.billingCountry,
+                billingCountry:"Netherlands",
               },
             })
           );
@@ -583,7 +574,11 @@ dataLayer.push(dll);
                     name="country"
                     id="country"
                     value={country}
-                    onChange={(e) =>{setCountry(e)}}
+                    // onChange={(e) => setCountry(e)}      ////????original
+                    onChange={(val) => {
+                      setCountry(val);
+                      localStorage.country = val;
+                    }}
                     required
                   />
                 </div>
@@ -788,7 +783,7 @@ dataLayer.push(dll);
                     name="country"
                     id="country"
                     value={billingCountry}
-                    onChange={(e) => {setBillingCountry(e);}}
+                    onChange={(e) => setBillingCountry(e)}
                     required
                   />
                 </div>
