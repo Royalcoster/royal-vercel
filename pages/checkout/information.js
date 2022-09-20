@@ -44,7 +44,8 @@ export default function Information(props) {
   const [addition, setAddtion] = useState();
   const [zipCode, setZipCode] = useState();
   const [town, setTown] = useState();
-  const [country, setCountry] = useState('Netherlands');
+  // const [country, setCountry] = useState('Netherlands');
+  const [country, setCountry] = useState();
   const [phoneNumber, setPhoneNumber] = useState();
   const [billingFirstName, setBillingFirstName] = useState();
   const [billingSurName, setBillingSurName] = useState();
@@ -54,7 +55,8 @@ export default function Information(props) {
   const [billingAddition, setBillingAddtion] = useState();
   const [billingZipCode, setBillingZipCode] = useState();
   const [billingTown, setBillingTown] = useState();
-  const [billingCountry, setBillingCountry] = useState('Netherlands');
+  // const [billingCountry, setBillingCountry] = useState('Netherlands');
+  const [billingCountry, setBillingCountry] = useState();
   const [billingPhoneNumber, setBillingPhoneNumber] = useState();
   const [localStore, setLocalStore] = useState();
   const [errorPhone, setErrorPhone] = useState();
@@ -150,7 +152,8 @@ dataLayer.push(dll);
       setPhoneNumber(personInfo.phoneNumber);
       setStreet(address.street);
       setApartment(address.apartment);
-      setCountry("Netherlands");
+      // setCountry("Netherlands");
+      setCountry(address.country);
       setTown(address.town);
       setZipCode(address.zipCode);
       setAddtion(address.addition);
@@ -164,7 +167,8 @@ dataLayer.push(dll);
       setBillingPhoneNumber(personInfo.billingPhoneNumber);
       setBillingStreet(address.billingStreet);
       setBillingApartment(address.billingApartment);
-      setBillingCountry("Netherlands");
+      // setBillingCountry("Netherlands");
+      setBillingCountry(address.billingCountry);
       setBillingTown(address.billingTown);
       setBillingZipCode(address.billingZipCode);
       setBillingAddtion(address.billingAddition);
@@ -275,8 +279,9 @@ dataLayer.push(dll);
                     apartment: localStorage.apartment,
                     zipCode: localStorage.zipCode,
                     town: localStorage.town,
-                    country: "Netherlands",
-                      phoneNumber: localStorage.phoneNumber,
+                    // country: "Netherlands",
+                    country: localStorage.country,
+                    phoneNumber: localStorage.phoneNumber,
                   },
                 })
               );
@@ -293,7 +298,8 @@ dataLayer.push(dll);
                     billingApartment: localStorage.billingApartment,
                     billingZipCode: localStorage.billingZipCode,
                     billingTown: localStorage.billingTown,
-                    billingCountry: "Netherlands",
+                    // billingCountry: "Netherlands",
+                    billingCountry: localStorage.billingCountry,
                     billingPhoneNumber: localStorage.billingPhoneNumber,
                   },
                 })
@@ -315,8 +321,9 @@ dataLayer.push(dll);
                     apartment: localStorage.apartment,
                     zipCode: localStorage.zipCode,
                     town: localStorage.town,
-                      country: "Netherlands",
-                      phoneNumber: localStorage.phoneNumber,
+                    // country: "Netherlands",
+                    country: localStorage.country,
+                    phoneNumber: localStorage.phoneNumber,
                   },
                 })
               );
@@ -333,7 +340,8 @@ dataLayer.push(dll);
                     billingApartment: localStorage.billingApartment,
                     billingZipCode: localStorage.billingZipCode,
                     billingTown: localStorage.billingTown,
-                    billingCountry: "Netherlands",
+                    // billingCountry: "Netherlands",
+                    billingCountry: localStorage.billingCountry,
                     billingPhoneNumber: localStorage.billingPhoneNumber,
                   },
                 })
@@ -383,7 +391,8 @@ dataLayer.push(dll);
                 apartment: apartment,
                 zipCode: zipCode,
                 town: town,
-                country:"Netherlands",
+                // country:"Netherlands",
+                country: country,
               },
             })
           );
@@ -400,7 +409,8 @@ dataLayer.push(dll);
                 billingApartment: billingApartment,
                 billingZipCode: billingZipCode,
                 billingTown: billingTown,
-                billingCountry:"Netherlands",
+                // billingCountry:"Netherlands",
+                billingCountry: billingCountry,
               },
             })
           );
@@ -568,7 +578,12 @@ dataLayer.push(dll);
                     name="country"
                     id="country"
                     value={country}
-                    onChange={(e) => setCountry(e)}
+                    // onChange={(e) => setCountry(e)}      //????original
+                    onChange={(val) => {
+                      setCountry(val);
+                      localStorage.country = val;
+                      console.log(val);
+                    }}
                     required
                   />
                 </div>
@@ -773,7 +788,11 @@ dataLayer.push(dll);
                     name="country"
                     id="country"
                     value={billingCountry}
-                    onChange={(e) => setBillingCountry(e)}
+                    // onChange={(e) => setBillingCountry(e)}     ///???original
+                    onChange={(val) => {
+                      setBillingCountry(val);
+                      localStorage.billingCountry = val;
+                    }}
                     required
                   />
                 </div>

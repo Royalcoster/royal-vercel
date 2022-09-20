@@ -263,7 +263,11 @@ function Page(props) {
   useEffect(() => {
 
     if (localStorage.access_token) {
+<<<<<<< HEAD
       setAccessToken(localStorage.access_token);              
+=======
+      setAccessToken(localStorage.access_token);                                   
+>>>>>>> origin/apollo
     }
   }, []);
   useEffect(() => {

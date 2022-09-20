@@ -371,7 +371,7 @@ function Shipping(props) {
                         shippingData.address.zipCode +
                         " " +
                         shippingData.address.town}<br/>
-                      {"The " + shippingData.address.country}
+                      {+ shippingData.address.country}
                     </p>
                   </div>
                   <div className="text-panel mb-3">
@@ -434,7 +434,7 @@ function Shipping(props) {
                             billingData.address.billingZipCode ? billingData.address.billingZipCode : shippingData.address.zipCode +
                             " " +
                             billingData.address.billingTown ? billingData.address.billingTown : shippingData.address.town }<br/>
-                          {"The" + billingData.address.billingCountry ? billingData.address.billingCountry : shippingData.address.country}
+                          {+ billingData.address.billingCountry ? billingData.address.billingCountry : shippingData.address.country}
                         </p>
                       </div>
                       <div className="text-panel mb-3">
