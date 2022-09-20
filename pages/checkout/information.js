@@ -234,6 +234,9 @@ dataLayer.push(dll);
                 email: true,
 
               },
+              country: {
+                required: true,
+              },        ///////////////no
               phoneNumber: {
                 phone: true,
                 required: true
@@ -580,9 +583,9 @@ dataLayer.push(dll);
                     name="country"
                     id="country"
                     value={country}
-                    onChange={(e) => {
-                      setCountry(e.target.value);             //////////////SetCountry(e)//////////
-                      localStorage.country = e.target.value;   ///??/?????????????
+                    onChange={(e) =>{
+                      setCountry(e.value);
+                      localStorage.country = e.value;
                     }}
                     required
                   />
