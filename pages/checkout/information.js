@@ -580,6 +580,7 @@ dataLayer.push(dll);
                     value={country}
                     // onChange={(e) => setCountry(e)}      //????original
                     onChange={(val) => {
+                      alert(val);
                       setCountry(val);
                       localStorage.country = val;
                       console.log(val);
