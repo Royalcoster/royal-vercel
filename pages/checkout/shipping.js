@@ -127,7 +127,6 @@ function Shipping(props) {
 
   const payNow = (e) => {
     e.preventDefault();
-    alert("pay");
     let lineItems = [];
 
     JSON.parse(localStorage.cart).cartData.map((cart, index) => {
@@ -582,7 +581,6 @@ function Shipping(props) {
               <MyCartList showCoupon={ false } />
               <div className="summary-btn px-4 pb-5 d-none d-sm-block">
                 <button
-                  id="pButton"
                   type="submit"
                   className="btn px-5 py-3 buy-btn me-sm-4 me-0 mb-4"
                   onClick={payNow}
