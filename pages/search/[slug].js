@@ -511,7 +511,8 @@ function ProductRing(props) {
         var item = $.parseJSON(localStorage.selectedItem);
         dataLayer.push({ ecommerce: null });
         var dll = {
-          "event": "addToCart",
+          // "event": "addToCart",
+          "event": "add_to_cart",
           "ecommerce": {
                "value": selectedAmount * parseFloat(item.variants[0].price),
                 "currencyCode": "EUR",
