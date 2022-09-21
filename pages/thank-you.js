@@ -28,16 +28,30 @@ export default function ThankYou() {
             prds.push(cItems[this.shopifyid]);
           }
         })
+      // var dll = {
+      //   "event": "purchase",
+      //   "value": vl,
+      //   "currencyCode": "EUR",
+      //   "purchase": {
+      //     "actionField": {
+      //       "affiliation": "Shop",
+      //       "revenue": vl,
+      //     },
+      //     "products": prds
+      //   }
+      // }
       var dll = {
-        "event": "purchase",
-        "value": vl,
-        "currencyCode": "EUR",
-        "purchase": {
-          "actionField": {
-            "affiliation": "Shop",
-            "revenue": vl,
-          },
-          "products": prds
+        "event" : "purchase",
+        "ecommerce": {
+          "value": vl,
+          "currencyCode": "EUR",
+          "purchase": {
+            "actionField": {
+              "affiliation": "Shop",
+              "revenue": vl,
+            },
+            "products": prds
+          }
         }
       }
 

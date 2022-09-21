@@ -131,7 +131,8 @@ export default function CollectionDetail(props) {
         });
       dataLayer.push({ ecommerce: null });
       dll = {
-        "event": "productDetail",
+        // "event": "productDetail",
+        "event": "view_item",
           "ecommerce": {
             "value": item.variants[0].node.price,
             "currencyCode": "EUR",
