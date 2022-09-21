@@ -376,6 +376,7 @@ function Ring(props) {
   const [productTypeFilter, setProductTypeFilter] = useState();
   const [isMobile, setIsMobile] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
+  const [loaded, setLoaded] = useState(false);
   const pushClickEvent = (obj) => {
 
     var ind = obj.attr("position") - 1;
@@ -464,6 +465,7 @@ function Ring(props) {
     localStorage.mainBackTitle = "SEARCH";
     localStorage.mainBackHref = "/search?search=" + ll;
       TagManager.initialize({ gtmId: 'GTM-5XRL4VQ' });
+
   }, []);
   useEffect(() => {
     var pt = getQueryParam(window.location.href, 'productType');
@@ -577,10 +579,12 @@ function Ring(props) {
   }, [router.query]);
 
     useEffect(() => {
-         setTimeout(function() {
-              $.getScript("/loadingOverlay.js", function() {
 
-                if (formData) {
+      if (!loaded) {
+
+                if (true) {
+                  var formData = new FormData();
+
                   console.log(formData)
 
                   formData.position = "first:28";
@@ -604,11 +608,7 @@ function Ring(props) {
                     .then((res) => res.json())
                     .then((data) => {
 
-                      setLoad(false);
-
-
                       pushDataLayers(data.data,formData.query);
-                      console.log(data.resources.results.products)
                       setProductData(data.resources.results.products);
                       productStore = data.data;
                       $.each(data.data, function() {
@@ -624,9 +624,10 @@ function Ring(props) {
                       })
                     });
                 }
-              });
-      }, 1500);
-    }, [formData]);
+
+      setLoaded(true);
+    }
+    }, [formData, loaded]);
 
   useEffect(() => {
     if (cTags.length) {
@@ -2510,7 +2511,7 @@ function Ring(props) {
             </div>
           )}
           {/* {false ? ( */}
-          {!load && productData && productData.length > 0 ? (
+          {productData && productData.length > 0 ? (
             <div className="col-lg-12 col-md-12 col-sm-12 col-12 p-0 product-panel m-0">
               <div className="row m-0">
                 {productData.map((item, index) => {
@@ -2545,7 +2546,7 @@ function Ring(props) {
                         {isMobile && (
                           <div style={{
                             height: 150,
-                             backgroundImage: "url(" + item.item.featured_image.url + ")",
+                             backgroundImage: "url(" + item.featured_image.url + ")",
                              backgroundRepeat: "no-repeat",
                              backgroundPosition: "center center",
                              backgroundSize: "contain"
