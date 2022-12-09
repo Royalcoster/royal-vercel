@@ -232,7 +232,7 @@ export default function CollectionDetail(props) {
 
   const  getCollection = async (firstLoad = false, last = "") => {
 
-    let productURL = "https://royalcoster.com:81/royalcoster/getCollectionProducts.php";
+    let productURL = "https://costercatalog.com/shopify/royalcoster_api/getCollectionProducts.php";
     let formData = new FormData();
     setLoading(false);
     formData.append("handle", localStorage.handle)

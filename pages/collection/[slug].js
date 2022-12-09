@@ -11,6 +11,7 @@ import WatchItems from "../../components/watchItems";
 import Collection from "../../components/collection";
 import Instagram from "../../components/instagram";
 import Image from "next/image";
+import GoToTop from '../../components/GoToTop';
 import { NextSeo } from 'next-seo';
 import {
   RiArrowRightSFill,
@@ -173,7 +174,7 @@ export default function CollectionDetail(props) {
 
     $(".product-panel").html("");
     window.scrollTo({
-      top: 300,
+      top: 0,
       left: 0,
       behavior: 'smooth'
     });
@@ -246,7 +247,7 @@ export default function CollectionDetail(props) {
   }, [router.query]);
 
   const  getCollection = async (firstLoad = false, last = "") => {
-    let productURL = "https://royalcoster.com:81/royalcoster" + "/getCollectionProducts.php";
+    let productURL = "https://costercatalog.com/shopify/royalcoster_api" + "/getCollectionProducts.php";
     let formData = new FormData();
     setLoading(false);
     formData.append("handle", localStorage.handle);
@@ -399,7 +400,7 @@ export default function CollectionDetail(props) {
   if ( !attemptedPath.includes('luna-collection') ) {
     return (
       <>
-
+      <GoToTop />
       <div className="collection-detail_page">
       {/* <Head>
         {props.data.title && (
@@ -751,7 +752,7 @@ export default function CollectionDetail(props) {
   } else {
     return (
       <>
-
+      <GoToTop />
       <div className="collection-detail_page">
       <Head>
       {seoData.title && (

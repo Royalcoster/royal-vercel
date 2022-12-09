@@ -208,7 +208,7 @@ export default function Home( props ) {
             {heroData.button2 && (
               <Link href={heroData.button2.url} >
                 <a style={{backgroundColor:"white",color:"black"}} className="btn blue-outline-btn shop-now-btn round-form px-5 py-3 mt-5">
-                  {heroData.button2.title}
+                  SEE LUNA COLLECTYION
                 </a>
               </Link>
             )}
@@ -237,14 +237,14 @@ export default function Home( props ) {
             {heroData.button && (
               <Link href={heroData.button.url}>
                 <a className="btn rainbow-btn dark-btn round-form px-5 py-3 me-3 mt-5">
-                  {heroData.button.title}
+                    SEE LUNA COLLECTION
                 </a>
               </Link>
             )}
             {heroData.button2 && (
               <Link href={heroData.button2.url}>
                 <a className="btn blue-outline-btn shop-now-btn round-form px-5 py-3 mt-5">
-                  {heroData.button2.title}
+                  SEE LUNA COLLECTION
                 </a>
               </Link>
             )}
@@ -271,14 +271,14 @@ export default function Home( props ) {
           {heroData.button && (
             <Link href={heroData.button.url}>
               <a className="btn rainbow-btn dark-btn round-form px-5 py-3 me-3 my-2" style={{fontSize: 12}}>
-                {heroData.button.title}
+                SEE LUNA COLLECTION
               </a>
             </Link>
           )}
           {heroData.button2 && (
             <Link href={heroData.button2.url}>
               <a className="btn blue-outline-btn shop-now-btn round-form px-5 py-3 my-2" style={{fontSize: 12}}>
-                {heroData.button2.title}
+                SEE LUNA COLLECTION
               </a>
             </Link>
           )}

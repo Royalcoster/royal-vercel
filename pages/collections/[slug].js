@@ -167,7 +167,7 @@ export default function CollectionDetail() {
   }, [router.query]);
 
   const getCollection = (hndl, after = "") => {
-            let productURL = "https://royalcoster.com:81/royalcoster/getCollectionProducts.php";
+            let productURL = "https://costercatalog.com/shopify/royalcoster_api/getCollectionProducts.php";
             let formData = new FormData();
             setLoading(true);
 

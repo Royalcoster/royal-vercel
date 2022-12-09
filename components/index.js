@@ -59,7 +59,7 @@ export default function Home({ data }) {
         $.each(data.acf.product_row, function() {
           console.log(this);
           var ths = this;
-          fetch('https://royalcoster.com:81/royalcoster/images/getImage.php?src=' + ths.product_row_img.url, {
+          fetch('https://costercatalog.com/shopify/royalcoster_api/images/getImage.php?src=' + ths.product_row_img.url, {
             mathod: "get"
           })
           .then((res) => res.json())

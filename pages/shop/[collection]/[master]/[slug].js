@@ -91,7 +91,7 @@ export async function getStaticProps(context) {
      trns = await res1.json();
    }
   let shopifyid = params.slug.split("-")[params.slug.split("-").length - 1];
-  const res = await fetch("https://royalcoster.com:81/royalcoster/getProduct.php" + "?shopifyid=" + shopifyid + "&language=" + context.locale);
+  const res = await fetch("https://costercatalog.com/shopify/royalcoster_api/getProduct.php" + "?shopifyid=" + shopifyid + "&language=" + context.locale);
   const data = await res.json();
 
   return {
@@ -136,8 +136,8 @@ function ProductRing(props) {
   const [available, setAvailable] = useState();
   const [sku, setSku] = useState();
   const [swiperImages, setSwiperImages] = useState();
-  const getProductURL = "https://royalcoster.com:81/royalcoster/getProduct.php";
-  const graphqlURL = "https://royalcoster.com:81/royalcoster/graphql.php";
+  const getProductURL = "https://costercatalog.com/shopify/royalcoster_api/getProduct.php";
+  const graphqlURL = "https://costercatalog.com/shopify/royalcoster_api/graphql.php";
   const [loaded, setLoaded] = useState(false);
   // why to buy
   const [whyToBuy, setWhyToBuy] = useState();
@@ -626,7 +626,7 @@ function ProductRing(props) {
       } else {
         formData.append("variant", window.location.hash.substring(1));
       }
-      fetch("https://royalcoster.com:81/royalcoster/getProduct.php", {
+      fetch("https://costercatalog.com/shopify/royalcoster_api/getProduct.php", {
         method: "post",
         body: formData,
       })
@@ -1488,7 +1488,7 @@ function ProductRing(props) {
                   <div className="select-karat">
                     <h6
                       onClick={() => {
-                          window.open("https://royalcoster.com:81/royalcoster/Ringsizer.pdf","_blank")
+                          window.open("https://costercatalog.com/shopify/royalcoster_api/Ringsizer.pdf","_blank")
                         }}
                         htmlFor="selectKarat"
                         className="d-flex align-items-center m-0 text-uppercase text-decoration-underline"
@@ -1510,7 +1510,7 @@ function ProductRing(props) {
                       fontSize: "1rem",
                     }}
                     onClick={() => {
-                      window.open("https://royalcoster.com:81/royalcoster/Ringsizer.pdf","_blank")
+                      window.open("https://costercatalog.com/shopify/royalcoster_api/Ringsizer.pdf","_blank")
                     }}
                   >
                   FIND MY SIZE

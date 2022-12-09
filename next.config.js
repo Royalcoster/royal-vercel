@@ -20,4 +20,7 @@ module.exports = withTranslateRoutes({
     // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
+  experimental: {
+    scrollRestoration: false,
+  },
 }) //I am not sure

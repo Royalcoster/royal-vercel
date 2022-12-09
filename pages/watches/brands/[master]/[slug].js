@@ -56,8 +56,8 @@ import { SnackbarProvider, useSnackbar } from "notistack";
 import { Fragment } from 'react';
 import { Button } from 'react';
 SwiperCore.use([Autoplay, Navigation]);
-const getProductURL = "https://royalcoster.com:81/royalcoster/getProduct.php";
-const graphqlURL = "https://royalcoster.com:81/royalcoster/graphql.php";
+const getProductURL = "https://costercatalog.com/shopify/royalcoster_api/getProduct.php";
+const graphqlURL = "https://costercatalog.com/shopify/royalcoster_api/graphql.php";
 export async function getStaticPaths({ locale }) {
   return {
     paths: [],
@@ -82,7 +82,7 @@ export async function getStaticProps(context) {
    }
   let shopifyid = params.slug.split("-")[params.slug.split("-").length - 1];
 
-  const res = await fetch("https://royalcoster.com:81/royalcoster/getProduct.php" + "?shopifyid=" + shopifyid + "&language=" + context.locale);
+  const res = await fetch("https://costercatalog.com/shopify/royalcoster_api/getProduct.php" + "?shopifyid=" + shopifyid + "&language=" + context.locale);
   const data = await res.json();
 
   return {
@@ -626,7 +626,7 @@ function ProductRing(props) {
       formData.append("shopifyid", shopifyid[shopifyid.length - 1]);
       formData.append("dataonly", "1");
       formData.append("language", locale);
-      fetch("https://royalcoster.com:81/royalcoster/getProduct.php", {
+      fetch("https://costercatalog.com/shopify/royalcoster_api/getProduct.php", {
         method: "post",
         body: formData,
       })

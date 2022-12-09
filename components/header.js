@@ -147,6 +147,10 @@ let submenus = [
             name: "Fjory",
             url: "/jewelry-brands/fjory-collection",
           },
+          {
+            name: "Annamaria Cammilli",
+            url: "/jewelry-brands/annamaria-cammilli-collection",
+          },
         ]
       },
      ]

@@ -57,7 +57,7 @@ import { Fragment } from 'react';
 import { Button } from 'react';
 SwiperCore.use([Autoplay, Navigation]);
 const getProductURL = process.env.NEXT_PUBLIC_GET_PRODUCT_URL;
-const graphqlURL = "https://royalcoster.com:81/royalcoster/graphql.php";
+const graphqlURL = "https://costercatalog.com/shopify/royalcoster_api/graphql.php";
 export async function getStaticPaths({ locale }) {
   return {
     paths: [],
@@ -80,8 +80,8 @@ export async function getStaticProps(context) {
   const { params } = context;
   let shopifyid = params.slug.split("-")[params.slug.split("-").length - 1];
 
-  console.log("https://royalcoster.com:81/royalcoster/getProduct.php" + "?shopifyid=" + shopifyid + "&language=" + context.locale);
-  const res = await fetch("https://royalcoster.com:81/royalcoster/getProduct.php" + "?shopifyid=" + shopifyid + "&language=" + context.locale);
+  console.log("https://costercatalog.com/shopify/royalcoster_api/getProduct.php" + "?shopifyid=" + shopifyid + "&language=" + context.locale);
+  const res = await fetch("https://costercatalog.com/shopify/royalcoster_api/getProduct.php" + "?shopifyid=" + shopifyid + "&language=" + context.locale);
   const data = await res.json();
 
   return {
@@ -572,7 +572,7 @@ function ProductRing(props) {
       formData.append("shopifyid", shopifyid[shopifyid.length - 1]);
       formData.append("dataonly", "1");
       formData.append("language", locale);
-      fetch("https://royalcoster.com:81/royalcoster/getProduct.php", {
+      fetch("https://costercatalog.com/shopify/royalcoster_api/getProduct.php", {
         method: "post",
         body: formData,
       })
@@ -1166,7 +1166,7 @@ function ProductRing(props) {
                   <div className="select-karat">
                     <h6
                       onClick={() => {
-                          window.open("https://royalcoster.com:81/royalcoster/Ringsizer.pdf","_blank")
+                          window.open("https://costercatalog.com/shopify/royalcoster_api/Ringsizer.pdf","_blank")
                         }}
                         htmlFor="selectKarat"
                         className="d-flex align-items-center m-0 text-uppercase text-decoration-underline"

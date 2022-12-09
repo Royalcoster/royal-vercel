@@ -10,7 +10,7 @@ import Footer from "../../components/footer";
 import { connect } from "react-redux";
 import { creatCheckout } from "../../redux/actions/checkOutAction";
 import { SnackbarProvider, useSnackbar } from "notistack";
-const payURL = "https://royalcoster.com:81/royalcoster/safepay.php";
+const payURL = "https://costercatalog.com/shopify/royalcoster_api/safepay.php";
 
 const initalOptions = {
   "currency": "USD",
@@ -203,7 +203,7 @@ function Shipping(props) {
 
   const onApprove = (data, actions) => {
     return actions.order.capture().then(function (details) {
-      window.location.href = "https://royalcoster.com:81/royalcoster/safepay_response.php?orderid=" + ddd.orderid;
+      window.location.href = "https://costercatalog.com/shopify/royalcoster_api/safepay_response.php?orderid=" + ddd.orderid;
     });
   };
 

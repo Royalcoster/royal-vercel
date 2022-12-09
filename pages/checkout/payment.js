@@ -243,7 +243,7 @@ function Payment(props) {
 
   const onApprove = (data, actions) => {
    return actions.order.capture().then(function (details) {
-     window.location.href = "https://royalcoster.com:81/royalcoster/safepay_response.php?orderid=" + ddd.orderid;
+     window.location.href = "https://costercatalog.com/shopify/royalcoster_api/safepay_response.php?orderid=" + ddd.orderid;
    });
  };
   const payNow = (e) => {

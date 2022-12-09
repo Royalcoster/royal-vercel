@@ -19,14 +19,30 @@ import 'react-checkbox-tree/lib/react-checkbox-tree.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/style.scss";
 import { withTranslateRoutes } from 'next-translate-routes';
-Router.events.on('routeChangeStart', () => NProgress.start());
-Router.events.on('routeChangeComplete', () => NProgress.done());
+Router.events.on('routeChangeStart', () => {
+    NProgress.start();
+      window.scroll(0,0)
+  }
+);
+Router.events.on('routeChangeComplete', () => {
+    NProgress.done()
+    window.scroll(0,0)
+  }
+);
+
 Router.events.on('routeChangeError', () => NProgress.done());
 
 function MyApp({ Component, pageProps }) {
   const [show, setShow] = useState(false);
   const { locale } = useRouter();
   useEffect(() => {
+      window.scroll(0,0);
+      history.scrollRestoration = "manual";
+
+    $(window).on('unload', function(){
+
+          $(window).scrollTop(0);
+    });
     var language = window.navigator.userLanguage || window.navigator.language;
     if (language == "nl") {
       localStorage.language = "nl"

@@ -17,7 +17,9 @@ export default class MyDocument extends Document {
                 delete localStorage.mainBackHref;
                 delete localStorage.referrer;
             `,
+
               }}
+
             />
 
                 <script async src="/jQuery.js"></script>
@@ -27,7 +29,7 @@ export default class MyDocument extends Document {
                <script async src="/jqueryui.js"></script>
                <script async src="/jquery.validate.js"></script>
                <link href="/magiczoom.css" rel="stylesheet" type="text/css" media="screen"/>
-          
+
                <script async src="/moment.js"></script>
 
 
@@ -36,6 +38,7 @@ export default class MyDocument extends Document {
                         __html: `
 
                         setTimeout(function () {
+                          
                             var tidioScript = document.createElement('script');
                             tidioScript.src = '//code.tidio.co/ycarrpqpxbolzhqy4sheikxbbi0eysba.js';
                             document.body.appendChild(tidioScript);

@@ -121,25 +121,25 @@ const productItems = [
 const getProductURL = process.env.NEXT_PUBLIC_GET_PRODUCT_URL;
 const productURL = process.env.NEXT_PUBLIC_PRODUCT_URL;
 const collectionURL =
-  "https://royalcoster.com:81/royalcoster/getCustomCollections.php";
+  "https://costercatalog.com/shopify/royalcoster_api/getCustomCollections.php";
 const metarialURL =
-  "https://royalcoster.com:81/royalcoster/getMaterialsGroupedNew.php";
+  "https://costercatalog.com/shopify/royalcoster_api/getMaterialsGroupedNew.php";
 const materialColorURL =
-  "https://royalcoster.com:81/royalcoster/getAttributesColor.php";
+  "https://costercatalog.com/shopify/royalcoster_api/getAttributesColor.php";
 const cutURL =
-  "https://royalcoster.com:81/royalcoster/getAttributesCut.php";
+  "https://costercatalog.com/shopify/royalcoster_api/getAttributesCut.php";
 const mountingURL =
-  "https://royalcoster.com:81/royalcoster/generateAttributesStyle.php";
+  "https://costercatalog.com/shopify/royalcoster_api/generateAttributesStyle.php";
 const styleURL =
-  "https://royalcoster.com:81/royalcoster/generateAttributesCollection.php";
+  "https://costercatalog.com/shopify/royalcoster_api/generateAttributesCollection.php";
 const brandURL =
-  "https://royalcoster.com:81/royalcoster/getBrandsGrouped.php";
+  "https://costercatalog.com/shopify/royalcoster_api/getBrandsGrouped.php";
 const brightnessURL =
-  "https://royalcoster.com:81/royalcoster/generateAttributesClarity.php";
+  "https://costercatalog.com/shopify/royalcoster_api/generateAttributesClarity.php";
 const stoneURL =
-  "https://royalcoster.com:81/royalcoster/generateAttributesType.php";
+  "https://costercatalog.com/shopify/royalcoster_api/generateAttributesType.php";
 const settingURL =
-  "https://royalcoster.com:81/royalcoster/generateAttributesSettings.php";
+  "https://costercatalog.com/shopify/royalcoster_api/generateAttributesSettings.php";
 const CTagURL = process.env.NEXT_PUBLIC_CTAG_URL;
 const headers = {
   // "Content-Type": "application/json",
@@ -601,7 +601,7 @@ function Ring(props) {
                       delete formData.query;
                       formData.append("query", ll);
                       formData.append("page", 1)
-                  fetch("https://royalcoster.com:81/royalcoster/search.php", {
+                  fetch("https://costercatalog.com/shopify/royalcoster_api/search.php", {
                     method: "POST",
                     body: formData,
                   })
@@ -2021,7 +2021,7 @@ function Ring(props) {
         delete formData.query;
         formData.append("query", ll);
         formData.append("page", 1)
-    fetch("https://royalcoster.com:81/royalcoster/search.php",{
+    fetch("https://costercatalog.com/shopify/royalcoster_api/search.php",{
       method: "post",
       body: formData,
     })

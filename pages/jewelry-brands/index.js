@@ -278,7 +278,7 @@ export default function Watch(props) {
           })
           $.each(data[0].acf.collections_list, function(ind) {
             var ths = this;
-            let productURL = "https://royalcoster.com:81/royalcoster/getWatchesCollections.php";
+            let productURL = "https://costercatalog.com/shopify/royalcoster_api/getWatchesCollections.php";
             let formData = new FormData();
             formData.append("handle", this.shopify_collection_handle);
 

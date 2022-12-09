@@ -237,7 +237,7 @@ export async function getStaticPaths() {
 }
 export async function getStaticProps({ params, preview = false, previewData }) {
   let shopifyid = params.slug.split("-")[params.slug.split("-").length - 1];
-  const res = await fetch("https://royalcoster.com:81/royalcoster/getProductForShare.php?shopifyid=" + shopifyid);
+  const res = await fetch("https://costercatalog.com/shopify/royalcoster_api/getProductForShare.php?shopifyid=" + shopifyid);
   const data = await res.json();
 
   return {
@@ -996,7 +996,7 @@ function ProductRing(props) {
                     <div className="d-flex justify-content-between pb-4 align-items-center">
                       <h3
                       onClick={() => {
-                          window.open("https://royalcoster.com:81/royalcoster/Ringsizer.pdf","_blank")
+                          window.open("https://costercatalog.com/shopify/royalcoster_api/Ringsizer.pdf","_blank")
                         }}
                         htmlFor="selectKarat"
                         className="d-flex align-items-center m-0 text-uppercase"
@@ -1017,7 +1017,7 @@ function ProductRing(props) {
                           marginTop: -30
                         }}
                         onClick={() => {
-                          window.open("https://royalcoster.com:81/royalcoster/Ringsizer.pdf","_blank")
+                          window.open("https://costercatalog.com/shopify/royalcoster_api/Ringsizer.pdf","_blank")
                         }}
                       >
                       FIND MY SIZE
