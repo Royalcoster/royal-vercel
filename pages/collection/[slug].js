@@ -21,7 +21,7 @@ import {
 } from "react-icons/ri";
 import router, { useRouter } from "next/router";
 import Skeleton from "@mui/material/Skeleton";
-
+   
 const productTypes = ["all", "rings", "earrings", "necklaces", "bracelets"];
 let products = [];
 export async function getStaticPaths() {
