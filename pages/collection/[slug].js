@@ -11,6 +11,7 @@ import WatchItems from "../../components/watchItems";
 import Collection from "../../components/collection";
 import Instagram from "../../components/instagram";
 import Image from "next/image";
+import GoToTop from '../../components/GoToTop';
 import { NextSeo } from 'next-seo';
 import {
   RiArrowRightSFill,
@@ -21,7 +22,7 @@ import {
 } from "react-icons/ri";
 import router, { useRouter } from "next/router";
 import Skeleton from "@mui/material/Skeleton";
-   
+
 const productTypes = ["all", "rings", "earrings", "necklaces", "bracelets"];
 let products = [];
 export async function getStaticPaths() {
@@ -399,6 +400,7 @@ export default function CollectionDetail(props) {
   if ( !attemptedPath.includes('luna-collection') ) {
     return (
       <>
+      <GoToTop />
       <div className="collection-detail_page">
       {/* <Head>
         {props.data.title && (
@@ -750,6 +752,7 @@ export default function CollectionDetail(props) {
   } else {
     return (
       <>
+      <GoToTop />
       <div className="collection-detail_page">
       <Head>
       {seoData.title && (
