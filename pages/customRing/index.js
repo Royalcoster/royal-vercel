@@ -125,7 +125,7 @@ export default function ChooseSetting() {
       filtersUpdated = "tag:exclusiveringsettings";
 
   useEffect(() => {
-
+   alert("????")
     let formData = new FormData();
     formData.append("position", "first:9");
     formData.append("query",filtersUpdated);
@@ -768,7 +768,7 @@ export default function ChooseSetting() {
       </div>
 
       {/* Start Schedule section */}
-      <Schedule normalMode="normal-mode" />  
+      <Schedule normalMode="normal-mode" />
       {/* End Schedule section */}
       {/* Start Footer */}
       <Footer />
