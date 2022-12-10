@@ -1,100 +1,69 @@
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Head from "next/head";
-import Header from "../../components/header";
 import SelectSearch, { fuzzySearch } from "react-select-search-nextjs";
-import { useRouter } from "next/router";
-import MRange from "../../components/mRange";
+import Header from "../../components/header";
+import Footer from "../../components/footer";
+import Schedule from "../../components/schedule";
 import Range from "../../components/range";
+import { useRouter } from "next/router";
 import renderHTML from "react-render-html";
+import NumberFormat from "react-number-format";
 import {
-  RiErrorWarningLine,
-  RiFunctionLine,
-  RiMenuLine,
-  RiCheckLine,
+  RiHeartLine,
+  RiHeartFill,
   RiFilter3Fill,
   RiArrowRightSLine,
   RiArrowLeftSLine,
+  RiErrorWarningLine,
 } from "react-icons/ri";
 import { HiOutlineArrowLeft } from "react-icons/hi";
-
+import { Ee } from "react-flags-select";
+let products = [];
 const options = [
-  { name: "ALL", value: "ALL" },
-  { name: "POPULAR", value: "POPULAR" },
+  { name: "RELEVANCE", value: "RELEVANCE", reverse: false },
+  { name: "PRICE LOW TO HIGH", value: "PRICE A", reverse: false },
+  { name: "PRICE HIGH TO LOW", value: "PRICE B", reverse: true },
+  { name: "RECENTLY ADDED", value: "CREATED_AT", reverse: true },
+  { name: "RECENTLY UPDATED", value: "UPDATED_AT", reverse: true },
+  { name: "TITLE A-Z", value: "TITLE A", reverse: false },
+  { name: "TITLE Z-A", value: "TITLE B", reverse: true }
+
 ];
-const shapes = [
-  { name: "ROUND", image: "shape-1.png" },
-  { name: "PRINCESS", image: "shape-2.png" },
-  { name: "CUSHION", image: "shape-3.png" },
-  { name: "EMERALD", image: "shape-4.png" },
-  { name: "OVAL", image: "shape-5.png" },
-  { name: "RADIANT", image: "shape-6.png" },
-  { name: "ASSCHER", image: "shape-7.png" },
-  { name: "MARQUISE", image: "shape-8.png" },
-  { name: "HEART", image: "shape-9.png" },
-  { name: "PEAR", image: "shape-10.png" },
-];
+
+var styles = {
+  btn_primary: {
+    backgroundColor: "#d3d3d3",
+    marginRight: 10,
+    borderColor: "#c4a060",
+    color: "#000",
+    fontWeight: 400,
+    fontSize: "1.4rem",
+    border: "2px solid #f6f6f6"
+  }
+
+}
+const getProductURL = process.env.NEXT_PUBLIC_GET_PRODUCT_URL;
+const productURL = process.env.NEXT_PUBLIC_PRODUCT_URL;
 const productList = [
   {
-    image: "diamond-1.png",
-    title: "1.00 Carat H SI1 Excellent Cut round diamond",
-    cost: "€2.500",
-  },
-  {
-    image: "diamond-1.png",
-    title: "1.00 Carat H SI1 Excellent Cut round diamond",
-    cost: "€2.500",
-  },
-  {
-    image: "diamond-1.png",
-    title: "1.00 Carat H SI1 Excellent Cut round diamond",
-    cost: "€2.500",
-  },
-  {
-    image: "diamond-1.png",
-    title: "1.00 Carat H SI1 Excellent Cut round diamond",
-    cost: "€2.500",
-  },
-  {
-    image: "diamond-1.png",
-    title: "1.00 Carat H SI1 Excellent Cut round diamond",
-    cost: "€2.500",
-  },
-  {
-    image: "diamond-1.png",
-    title: "1.00 Carat H SI1 Excellent Cut round diamond",
-    cost: "€2.500",
-  },
-  {
-    image: "diamond-1.png",
-    title: "1.00 Carat H SI1 Excellent Cut round diamond",
-    cost: "€2.500",
-  },
-  {
-    image: "diamond-1.png",
-    title: "1.00 Carat H SI1 Excellent Cut round diamond",
-    cost: "€2.500",
-  },
-  {
-    image: "diamond-1.png",
-    title: "1.00 Carat H SI1 Excellent Cut round diamond",
-    cost: "€2.500",
-  },
-  {
-    image: "diamond-1.png",
-    title: "1.00 Carat H SI1 Excellent Cut round diamond",
-    cost: "€2.500",
-  },
-  {
-    image: "diamond-1.png",
-    title: "1.00 Carat H SI1 Excellent Cut round diamond",
-    cost: "€2.500",
-  },
-  {
-    image: "diamond-1.png",
-    title: "1.00 Carat H SI1 Excellent Cut round diamond",
-    cost: "€2.500",
-  },
+    img: "product(3).png",
+    title: "Brilliant Cut Diamond Engagement Ring",
+    categories: ["Diamond", "Engagement", "Rings"],
+    cost: "$2500",
+    href: "#",
+    url: "#",
+  }
+];
+const filterItems = [
+  { img: "filter-1.png", text: "SOLITAIRE" },
+  { img: "filter-2.png", text: "PAVE" },
+  { img: "filter-3.png", text: "CHANNEL SET" },
+  { img: "filter-4.png", text: "SIDE-STONE" },
+  { img: "filter-5.png", text: "THREE-STONE" },
+  { img: "filter-6.png", text: "TENSION" },
+  { img: "filter-7.png", text: "HALO" },
+  { img: "filter-8.png", text: "VINTAGE" },
 ];
 
 const karats = [
@@ -108,153 +77,164 @@ const karats = [
   { karat: "14k", title: "14K Yellow", key: "yellow" },
   { karat: "18k", title: "18K Yellow", key: "yellow" },
 ];
-const filterItems = [
-  { img: "filter-1.png", text: "SOLITAIRE" },
-  { img: "filter-2.png", text: "PAVE" },
-  { img: "filter-3.png", text: "CHANNEL SET" },
-  { img: "filter-4.png", text: "SIDE-STONE" },
-  { img: "filter-5.png", text: "THREE-STONE" },
-  { img: "filter-6.png", text: "TENSION" },
-  { img: "filter-7.png", text: "HALO" },
-  { img: "filter-8.png", text: "VINTAGE" },
-];
-const colorMarks = [
-  { value: 0, label: "" },
-  {
-    value: 10,
-    label: "M",
-  },
-  {
-    value: 20,
-    label: "L",
-  },
-  {
-    value: 30,
-    label: "K",
-  },
-  {
-    value: 40,
-    label: "J",
-  },
-  {
-    value: 50,
-    label: "I",
-  },
-  {
-    value: 60,
-    label: "H",
-  },
-  {
-    value: 70,
-    label: "G",
-  },
-  {
-    value: 80,
-    label: "F",
-  },
-  {
-    value: 90,
-    label: "E",
-  },
-  {
-    value: 100,
-    label: "D",
-  },
-];
+const settingType = [
+  { title: "Exclusive Ring Settings", key: "exclusiveringsettings" },
+  { title: "Ring Settings", key: "ringssettings" }
 
-const clarityMarks = [
-  { value: 0, label: "" },
-  {
-    value: 11.111,
-    label: "L1",
-  },
-  {
-    value: 22.222,
-    label: "S12",
-  },
-  {
-    value: 33.333,
-    label: "SL1",
-  },
-  {
-    value: 44.444,
-    label: "VS2",
-  },
-  {
-    value: 55.555,
-    label: "VS1",
-  },
-  {
-    value: 66.666,
-    label: "VVS2",
-  },
-  {
-    value: 77.777,
-    label: "VVS1",
-  },
-  {
-    value: 88.888,
-    label: "IF",
-  },
-  {
-    value: 99.999,
-    label: "FL",
-  },
 ];
-const cutMarks = [
-  {
-    value: 0,
-    label: "",
-  },
-  {
-    value: 25,
-    label: "FAIR",
-  },
-  {
-    value: 50,
-    label: "GOOD",
-  },
-  {
-    value: 75,
-    label: "VERY GOOD",
-  },
-  {
-    value: 100,
-    label: "EXCELLET",
-  },
-];
-export default function ChooseDiamond() {
+let filtersUpdated = "tag:exclusiveringsettings";
+let sortRuleUpdated = "sortKey:RELEVANCE,reverse:false";
+export default function ChooseSetting() {
+  const [formData, setFormData] = useState();
   const [result, setResult] = useState("878");
-  const [selectValue, setSelectValue] = useState("POPULAR");
-  const [products, setProducts] = useState(productList);
-  const [color, setColor] = useState("white");
-  const [selectShape, setSelectShape] = useState([]);
+
+  const [value, setValue] = useState({ min: 5, max: 25 });
+  const [selectRingType, setSelectRingType] = useState([]);
+  const [accessToken, setAccessToken] = useState();
+  const [selectKarat, setSelectKarat] = useState([]);
+  const [productList, setProductData] = useState([]);
+  const [lastProduct, setLastProduct] = useState();
+  const [loadMoreStatus, setLoadMoreStatus] = useState(false);
+  const [selectValue, setSelectValue] = useState({name:"RELEVANCE",value:"RELEVANCE",reverse:false});
+  const [sortRule, setSortRule] = useState("sortKey:RELEVANCE,reverse:false");
+  const [load, setLoad] = useState(false);
   const router = useRouter();
+  const [products, setProducts] = useState(productList);
+  const setFavor = (event) => {
+    event.target.closest(".favor-icon").classList.toggle("favor");
+  };
+  const openConfirmSettingPage = (event) => {
+   var el = $(event.target);
+   localStorage.choosenSetting = el.closest("[shopifyid]").attr("shopifyid");
+   let formData = new FormData();
+   formData.append("shopifyid", localStorage.choosenSetting);
+   formData.append("sort", sortRuleUpdated);
+   fetch(getProductURL, {
+     method: "post",
+     body: formData,
+   })
+   .then((res) => res.json())
+   .then((data) => {
+      localStorage.choosenSettingData = JSON.stringify(data);
+      window.location.href = "confirmSetting";
+   });
+
+  };
+  let lastProductStatus,
+      productStore = [],
+      filtersUpdated = "tag:exclusiveringsettings";
+
+  useEffect(() => {
+
+    let formData = new FormData();
+    formData.append("position", "first:9");
+    formData.append("query",filtersUpdated);
+    formData.append("sort", sortRuleUpdated);
+    if (formData) {
+
+      fetch(productURL, {
+        method: "post",
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          //setLoad(false);
+
+          if (data.hasNextPage == "Yes") {
+            setLastProduct(data.last);
+            lastProductStatus = data.last;
+          } else {
+            setLastProduct(false);
+            lastProductStatus = false;
+          }
+          setProductData(data.data);
+      //    setProducts([...products, ...productData]);
+
+          productStore = data.data;
+        });
+    }
+  }, [formData]);
+  const settingTypeChangedHndle = (event, item) => {
+    filtersUpdated = "tag:" + $(event.target).attr("value");
+
+    loadMore(true);
+  };
+  const loadMore = (isFirstPage = false) => {
+        setLoadMoreStatus(true);
+        let formData = new FormData();
+        if (typeof isFirstPage === 'object') {
+          formData.append("position", `first:9, after:"${lastProduct}"`);
+        } else {
+          formData.append("position", `first:9`);
+        }
+        formData.append("query", filtersUpdated);
+       formData.append("sort", sortRuleUpdated);
+        if (formData) {
+
+          fetch(productURL, {
+            method: "post",
+            body: formData,
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              data.hasNextPage == "Yes"
+                ? setLastProduct(data.last)
+                : setLastProduct(false);
+                if (typeof isFirstPage === 'object') {
+                  setProductData([...productList, ...data.data]);
+                } else {
+                  alert(JSON.stringify(data.data))
+                  setProductData(data.data);
+
+                }
+
+              setLoadMoreStatus(false);
+            });
+        }
+
+  };
 
   useEffect(() => {
     if (typeof document !== undefined) {
       require("bootstrap/dist/js/bootstrap");
     }
+    if (localStorage.access_token) {
+      setAccessToken(localStorage.access_token);
+    }
   }, []);
 
-  const loadMore = () => {
-    setProducts([...products, ...productList]);
-  };
 
-  const shapeHandle = (event, index) => {
-    let target = event.target.closest(".btn-shape");
+  const ringTypeHandle = (event, index) => {
+    let target = event.target.closest(".filter-item");
     if (target.classList.contains("active")) {
-      let removeItem = selectShape.indexOf(shapes[index].name);
+      let removeItem = selectRingType.indexOf(filterItems[index].text);
       if (removeItem != 0) {
-        selectShape.splice(removeItem, 1);
-        setSelectShape([...selectShape]);
+        selectRingType.splice(removeItem, 1);
+        setSelectRingType([...selectRingType]);
       } else {
-        selectShape.splice(-1, 1);
+        selectRingType.splice(-1, 1);
       }
       target.classList.remove("active");
     } else {
       target.classList.add("active");
-      setSelectShape([...selectShape, shapes[index].name]);
+      setSelectRingType([...selectRingType, filterItems[index].text]);
+    }
+  };
+
+  const karatItemHandle = (event, index) => {
+    let target = event.target.closest(".karat-item");
+    if (target.classList.contains("active")) {
+      let removeItem = selectKarat.indexOf(karats[index].title);
+      if (removeItem != 0) {
+        selectKarat.splice(removeItem, 1);
+        setSelectKarat([...selectKarat]);
+      } else {
+        selectKarat.splice(-1, 1);
+      }
+      target.classList.remove("active");
+    } else {
+      target.classList.add("active");
+      setSelectKarat([...selectKarat, karats[index].title]);
     }
   };
 
@@ -271,12 +251,12 @@ export default function ChooseDiamond() {
   };
 
   return (
-    <div className="chooseDiamond_page">
+    <div className="chooseSetting_page">
       <Head>
         <title>chooseSetting | Royal Coster</title>
       </Head>
       <Header />
-      {/* Start state section */}
+      {/* Start hero section */}
       <div className="state-section">
         <div className="link-panel r-container py-3 d-sm-flex d-none align-items-center">
           <button
@@ -317,64 +297,28 @@ export default function ChooseDiamond() {
             CHOOSE A SETTING
           </span>
         </div>
+
         <div className="setting-state-panel">
           <div className="r-container  py-md-3  row">
-            <div className="pe-5 py-md-0 selected-ring-panel py-5 my-md-5 my-0 col-4 setting-state d-flex justify-content-between align-items-center active">
+            <div className="pe-5 py-md-0 py-5 my-md-5 my-0 col-4 setting-state d-flex justify-content-between align-items-center active">
               <div className="text-panel d-flex align-items-center">
                 <div className="number me-3 d-flex justify-content-center align-items-center">
-                  <RiCheckLine />
+                  1
                 </div>
                 <div className="title text-uppercase">
                   <p className="mb-1 d-md-block d-none">Choose a</p>
                   <h3 className="m-0">Setting</h3>
                 </div>
               </div>
-              <div className="hover-panel d-md-none d-block">
-                <div className="r-container  py-4">
-                  <div className="ring-info-panel d-flex justify-content-between align-items-center">
-                    <div className="ring-title-panel d-flex align-items-center">
-                      <img
-                        src="/img/customRing/chooseDiamond/ring.png"
-                        width="57"
-                        height="57"
-                        alt="state-image"
-                        style={{ background: "white" }}
-                        className="round-form ring-image me-3"
-                      />
-                      <div className="text-panel">
-                        <h3 className="m-0">Solitaire</h3>
-                        <h4 className="text-capitalize">Metal : Gold (18k)</h4>
-                      </div>
-                    </div>
-                    <div className="cost-panel">
-                      <h3 className="m-0">€ 645.00</h3>
-                      <h4 className="text-end">(ex VAT)</h4>
-                    </div>
-                  </div>
-                  <div className="btn-panel row mt-4 m-0">
-                    <div className="col-6 pe-2 p-0">
-                      <button className="btn round-form btn-view py-2 text-uppercase">
-                        view
-                      </button>
-                    </div>
-                    <div className="col-6 ps-2 p-0">
-                      <button className="btn round-form btn-change py-2 text-uppercase">
-                        change
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
               <img
-                src="/img/customRing/chooseDiamond/ring.png"
+                className="d-md-block d-none"
+                src="/img/customRing/chooseSetting/choose.png"
                 width="52"
                 height="52"
                 alt="state-image"
-                style={{ background: "white" }}
-                className="round-form d-md-block d-none"
               />
             </div>
-            <div className="px-5 py-md-0 py-5 my-md-5 my-0 col-4 setting-state d-flex justify-content-between align-items-center active">
+            <div className="px-5 py-md-0 py-5 my-md-5 my-0 col-4 setting-state d-flex justify-content-between align-items-center">
               <div className="text-panel d-flex align-items-center">
                 <div className="number me-3 d-flex justify-content-center align-items-center">
                   2
@@ -385,8 +329,8 @@ export default function ChooseDiamond() {
                 </div>
               </div>
               <img
-                src="/img/customRing/chooseDiamond/diamond.png"
                 className="d-md-block d-none"
+                src="/img/customRing/chooseSetting/diamond.png"
                 width="52"
                 height="52"
                 alt="state-image"
@@ -412,80 +356,89 @@ export default function ChooseDiamond() {
             </div>
           </div>
         </div>
-      </div>
-      {/* End state section */}
-      {/* Start choose section */}
-      <div className="choose-section d-sm-block d-none r-container py-5">
-        <div className="shapes-panel">
-          <div className="title-panel py-4">
-            <h2 className="blue-text text-uppercase d-flex align-items-center">
-              SHAPES
-              <RiErrorWarningLine className="ms-2 warning-icon" />
-            </h2>
-          </div>
-          <div className="shapes-box py-4 d-flex align-items-center d-flex flex-wrap">
-            {shapes.map((item, index) => {
+        <div className="r-container d-sm-block d-none">
+          <div className="ring-types d-flex justify-content-between align-items-center flex-wrap py-5">
+            {filterItems.map((item, index) => {
               return (
                 <button
-                  className="btn btn-shape me-3 round mb-3"
+                  className="btn filter-item round-form mt-3"
                   key={index}
-                  onClick={(event) => shapeHandle(event, index)}
+                  onClick={(event) => ringTypeHandle(event, index)}
                 >
-                  <div className="image-box pb-3">
-                    <img src={"/img/customRing/chooseDiamond/" + item.image} />
+                  <div className="image-panel text-center mb-3">
+                    <img
+                      src={"/img/customRing/chooseSetting/" + item.img}
+                      alt="filter-image"
+                    />
                   </div>
-                  <p className="m-0">{item.name}</p>
+                  <h3 className="blue-text text-uppercase">{item.text}</h3>
                 </button>
               );
             })}
           </div>
+          <div className="setting-karat row m-0">
+            <div className="karat-panel col-lg-8 col-12 pe-5">
+              <h3 className="title text-uppercase pb-3">setting type</h3>
+              {settingType.map((item, index) => {
+                return (
+                  <button variant="outlined"  style={styles.btn_primary}
+                    key={item.key}
+                    value={item.key}
+                    onClick={(event) => settingTypeChangedHndle(event, index)}
+                  >
+                  {item.title}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+          <div className="setting-karat row m-0">
+            <div className="karat-panel col-lg-8 col-12 pe-5">
+              <h3 className="title text-uppercase pb-3">material</h3>
+              <div className="d-flex karat-list flex-wrap py-4 justify-content-between m-0">
+                {karats.map((item, index) => {
+                  return (
+                    <button
+                      className="btn p-0 karat-item"
+                      key={index}
+                      onClick={(event) => karatItemHandle(event, index)}
+                    >
+                      <div
+                        className={
+                          "round-form karat px-lg-4 px-5 py-2 " + item.key
+                        }
+                      >
+                        {item.karat}
+                      </div>
+                      <p className="pt-2">{item.title}</p>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+            <div className="cost-panel col-lg-4 col-12 px-5">
+              <h3 className="title text-uppercase blue-text m-0 pb-4">Cost</h3>
+              <div className="range-panel d-flex align-items-center mt-4">
+                <div className="range-min-pointer range-pointer" />
+                <div className="range-max-pointer range-pointer" />
+                <Range min={0} max={109000} unit={"$"} />
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="silder-panel row m-0">
-          <div className="color-filter col-lg-4 col-md-6 col-12 p-0 pe-5 mb-5 pb-5">
-            <h3 className="text-uppercase blue-text d-flex align-items-center mb-4">
-              carat
-              <RiErrorWarningLine className="ms-2" />
-            </h3>
-            <Range max={8} min={0} unit={""} />
-          </div>
-          <div className="color-filter col-lg-4 col-md-6 col-12 p-0 pe-5 mb-5 pb-5">
-            <h3 className="text-uppercase blue-text d-flex align-items-center">
-              colour
-              <RiErrorWarningLine className="ms-2" />
-            </h3>
-            <MRange marks={colorMarks} step={10} />
-          </div>
-          <div className="clarity-filter col-lg-4 col-md-6 col-12 p-0 pe-5 mb-5 pb-5">
-            <h3 className="text-uppercase blue-text d-flex align-items-center">
-              clarity
-              <RiErrorWarningLine className="ms-2" />
-            </h3>
-            <MRange marks={clarityMarks} step={11.111} />
-          </div>
-          <div className="cut-filter col-lg-4 col-md-6 col-12 p-0 pe-5 mb-5 pb-5">
-            <h3 className="text-uppercase blue-text d-flex align-items-center">
-              cut
-              <RiErrorWarningLine className="ms-2" />
-            </h3>
-            <MRange marks={cutMarks} step={25} />
-          </div>
-          <div className="price-filter col-lg-4 col-md-6 col-12 p-0 pe-5 mb-5 pb-5">
-            <h3 className="text-uppercase blue-text d-flex align-items-center mb-4">
-              price
-              <RiErrorWarningLine className="ms-2" />
-            </h3>
-            <Range max={109000} min={0} unit={"$"} />
-          </div>
-        </div>
+
       </div>
-      {/* End choose section */}
-      {/* Start products section */}
-      <div className="product-section r-container mb-5 pb-5">
+      {/* End Hero section */}
+
+      {/* Start product section */}
+
+      <div className="product-section r-container pt-5 pb-sm-5 ">
+
         <div className="top-bar row align-items-center m-0 py-3">
           <div className="title-panel col-md-6 col-12 p-0 pb-md-0 pb-3">
-            <h2>Choose Diamond</h2>
-            <p className="text-uppercase mb-0">
-              Certified Diamonds ({result} items)
+            <h2>Choose Setting</h2>
+            <p className="text-uppercase" style={{ display: "none"}}>
+              Engagement Rings <span>(Solitaire) ({result} items)</span>
             </p>
           </div>
           <div className="col-md-6 col-12 d-flex justify-content-end flex-sm-row flex-column p-0 pt-3 pt-md-0">
@@ -502,81 +455,76 @@ export default function ChooseDiamond() {
               </div>
               <RiArrowRightSLine />
             </button>
-            <div className="search-box round-form d-flex align-items-center py-2 pe-sm-0 pe-2 mb-sm-0 mb-2">
+            <div className="search-box round-form d-flex align-items-center py-2 pe-sm-0 pe-2">
               <label htmlFor="selectSearch" className="px-4">
-                FITER BY :{" "}
+              SORT BY :{" "}
               </label>
-              {options && (
-                <select
-                  className="form-select text-end blue-text round-form"
-                  onChange={(e) => {
-                    setSelectValue(e.target.value);
-                  }}
-                  aria-label="Default select example"
-                >
-                  {options.map((item, index) => {
-                    return (
-                      <option value={item.value} key={index}>
-                        {renderHTML(item.name)}
-                      </option>
-                    );
-                  })}
-                </select>
-              )}
+              <SelectSearch
+                id="selectSearch"
+                options={options}
+                value={selectValue}
+                onChange={(name,value) => {
+                  sortRuleUpdated = "sortKey:" + value.value.split(" ")[0] + ",reverse:" + value.reverse.toString();
+                  loadMore(true);
+                }}
+                filterOptions={fuzzySearch}
+                emptyMessage="Not found"
+                search
+              />
+
             </div>
           </div>
         </div>
-        <div className="list-bar d-flex justify-content-between align-items-center py-sm-0 py-3">
-          <div className="tab-group d-sm-block d-none">
-            <button className="btn py-4 px-0 me-4">NATURAL</button>
-            <button className="btn py-4 px-0 me-4">COLOURED</button>
-            <button className="btn py-4 px-0">GEMSTONES</button>
-          </div>
-          <select
-            className="form-select select-display-mode blue-text d-sm-none py-3 round-form px-4 me-3"
-            aria-label="Default select example"
-          >
-            <option>NATURAL</option>
-            <option>COLOURED</option>
-            <option>GEMSTONES</option>
-          </select>
-          <div className="order-btn-group d-flex">
-            <button className="btn btn-show-content d-flex round-form py-3 px-3 me-sm-5 me-3">
-              <RiMenuLine />
-            </button>
-            <button className="btn btn-show-list d-flex round-form py-3 px-3">
-              <RiFunctionLine />
-            </button>
-          </div>
-        </div>
-        <div className="main-panel row py-5 m-0">
-          {products.map((item, index) => {
-            return (
-              <Link passHref={true}  href="/customRing/confirmDiamond" key={index}>
-                <a className="product-item col-lg-3 col-md-4 col-sm-6 col-12 pe-4 p-0 mb-5">
-                  <div className="product-image round">
-                    <img
-                      src={"/img/customRing/chooseDiamond/" + item.image}
-                      alt="product-image"
-                    />
+        <div className="main-panel pt-5 pb-sm-5">
+          {productList.map((item, index) => {
+            if (true) {
+              var itemid =  item.shopifyid;
+
+              return (
+
+                <div className="mb-5 p-0 product-item" shopifyid={item.shopifyid}
+                    onClick={(event) => openConfirmSettingPage(event)}
+                >
+                        <div className="product-image d-flex justify-content-center align-items-center round">
+                        <img
+                          src={item.image}
+                          alt="product-image"
+                        />
+                      </div>
+                      <h3 className="text-uppercase blue-text py-4 m-0">
+                        {item.title}
+                      </h3>
+
+                      <h4 className="blue-text">{item.price}</h4>
+
+                  <div className="color-panel py-4 mb-4">
+                    <button className="btn white me-3"></button>
+                    <button className="btn yellow me-3"></button>
+                    <button className="btn platinium me-3"></button>
+                    <button className="btn rose-gold me-3"></button>
                   </div>
-                  <h3>{item.title}</h3>
-                  <div className="bottom-panel d-flex justify-content-between">
-                    <h4>{item.cost}</h4>
-                    <p>...</p>
-                  </div>
-                </a>
-              </Link>
-            );
-          })}
-          <button
-            className="btn load-more-btn text-uppercase py-3 px-5 my-5 round-form"
-            onClick={loadMore}
-          >
-            Load More
-          </button>
+                 {accessToken && <button className="favor-icon btn" onClick={setFavor}>
+                    <RiHeartLine className="unfavor" />
+                    <RiHeartFill className="favor" />
+                  </button>}
+                </div>
+              );
+          }  else {
+              return (
+                <div className="image-panel round" key={index}>
+                  <img src={"/img/customRing/chooseSetting/" + item.img} />
+                </div>
+              );
+          }})}
         </div>
+        <button
+          className="btn load-more-btn text-uppercase mt-sm-5 py-3 px-5 round-form"
+          onClick={loadMore}
+        >
+          Load More
+        </button>
       </div>
+      {/* End product section */}
       <div
         className="offcanvas offcanvas-end"
         tabIndex="-1"
@@ -612,55 +560,22 @@ export default function ChooseDiamond() {
             className="btn btn-style text-uppercase mt-3 round-form d-flex justify-content-between align-items-center px-4 py-3"
             type="button"
             data-bs-toggle="offcanvas"
-            data-bs-target="#shapeMenu"
-            aria-controls="shapeMenu"
+            data-bs-target="#styleMenu"
+            aria-controls="styleMenu"
             onClick={handleMenuBtn}
           >
-            shape
+            style
             <RiArrowRightSLine />
           </button>
           <button
             className="btn btn-price text-uppercase mt-3 round-form d-flex justify-content-between align-items-center px-4 py-3"
             type="button"
             data-bs-toggle="offcanvas"
-            data-bs-target="#caratMenu"
-            aria-controls="caratMenu"
+            data-bs-target="#karatMenu"
+            aria-controls="karatMenu"
             onClick={handleMenuBtn}
           >
-            carat
-            <RiArrowRightSLine />
-          </button>
-          <button
-            className="btn btn-price text-uppercase mt-3 round-form d-flex justify-content-between align-items-center px-4 py-3"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#colourMenu"
-            aria-controls="colourMenu"
-            onClick={handleMenuBtn}
-          >
-            COLOUR
-            <RiArrowRightSLine />
-          </button>
-          <button
-            className="btn btn-price text-uppercase mt-3 round-form d-flex justify-content-between align-items-center px-4 py-3"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#clarityMenu"
-            aria-controls="clarityMenu"
-            onClick={handleMenuBtn}
-          >
-            CLARIty
-            <RiArrowRightSLine />
-          </button>
-          <button
-            className="btn btn-price text-uppercase mt-3 round-form d-flex justify-content-between align-items-center px-4 py-3"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#cutMenu"
-            aria-controls="cutMenu"
-            onClick={handleMenuBtn}
-          >
-            CUT
+            karat
             <RiArrowRightSLine />
           </button>
         </div>
@@ -721,16 +636,16 @@ export default function ChooseDiamond() {
       <div
         className="offcanvas offcanvas-end"
         tabIndex="-1"
-        id="shapeMenu"
-        aria-labelledby="shapeMenuLabel"
+        id="styleMenu"
+        aria-labelledby="styleMenuLabel"
       >
         <div className="offcanvas-header py-4 p-0">
           <div className="r-container d-flex justify-content-between align-items-center py-2">
             <h3
-              id="shapeMenuLabel"
+              id="styleMenuLabel"
               className="text-uppercase mb-0 d-flex align-items-center"
             >
-              shape <RiErrorWarningLine className="ms-2" />
+              style <RiErrorWarningLine className="ms-2" />
             </h3>
             <button
               type="button"
@@ -752,19 +667,20 @@ export default function ChooseDiamond() {
             Reset Filter
           </button>
           <div className="r-container row pt-4">
-            {shapes.map((item, index) => {
+            {filterItems.map((item, index) => {
               return (
-                <div className="col-4 shape-item pb-3" key={index}>
+                <div className="col-4 style-item pb-3" key={index}>
                   <button
-                    className="btn btn-shape me-3 round mb-3"
-                    onClick={(event) => shapeHandle(event, index)}
+                    className="btn px-3 py-3 filter-item round-form"
+                    onClick={(event) => ringTypeHandle(event, index)}
                   >
-                    <div className="image-box pb-3">
+                    <div className="image-panel text-center mb-3">
                       <img
-                        src={"/img/customRing/chooseDiamond/" + item.image}
+                        src={"/img/customRing/chooseSetting/" + item.img}
+                        alt="filter-image"
                       />
                     </div>
-                    <p className="m-0">{item.name}</p>
+                    <h3 className="blue-text text-uppercase">{item.text}</h3>
                   </button>
                 </div>
               );
@@ -786,16 +702,16 @@ export default function ChooseDiamond() {
       <div
         className="offcanvas offcanvas-end"
         tabIndex="-1"
-        id="caratMenu"
-        aria-labelledby="caratMenuLabel"
+        id="karatMenu"
+        aria-labelledby="karatMenuLabel"
       >
         <div className="offcanvas-header py-4 p-0">
           <div className="r-container d-flex justify-content-between align-items-center py-2">
             <h3
-              id="caratMenuLabel"
+              id="karatMenuLabel"
               className="text-uppercase mb-0 d-flex align-items-center"
             >
-              carat <RiErrorWarningLine className="ms-2" />
+              karat <RiErrorWarningLine className="ms-2" />
             </h3>
             <button
               type="button"
@@ -817,154 +733,25 @@ export default function ChooseDiamond() {
             Reset Filter
           </button>
           <div className="r-container row pt-4">
-            <Range max={8} min={0} unit={""} />
-          </div>
-        </div>
-        <div className="offcanvas-footer text-center pb-5">
-          <button
-            className="btn btn-apply blue-btn text-uppercase py-3 round-form r-container"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#filterMenu"
-            aria-controls="filterMenu"
-          >
-            apply
-          </button>
-        </div>
-      </div>
-      <div
-        className="offcanvas offcanvas-end"
-        tabIndex="-1"
-        id="colourMenu"
-        aria-labelledby="colourMenuLabel"
-      >
-        <div className="offcanvas-header py-4 p-0">
-          <div className="r-container d-flex justify-content-between align-items-center py-2">
-            <h3
-              id="colourMenuLabel"
-              className="text-uppercase mb-0 d-flex align-items-center"
-            >
-              colour <RiErrorWarningLine className="ms-2" />
-            </h3>
-            <button
-              type="button"
-              className="btn btn-close text-reset"
-              data-bs-dismiss="offcanvas"
-              aria-label="Close"
-            ></button>
-          </div>
-        </div>
-        <div className="offcanvas-body p-0 d-flsex flex-column justify-content-between">
-          <button
-            className="btn btn-back text-uppercase d-flex justify-content-between align-items-center px-4 py-3"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#filterMenu"
-            aria-controls="filterMenu"
-          >
-            <RiArrowLeftSLine />
-            Reset Filter
-          </button>
-          <div className="r-container row pt-4">
-            <MRange marks={colorMarks} step={10} />
-          </div>
-        </div>
-        <div className="offcanvas-footer text-center pb-5">
-          <button
-            className="btn btn-apply blue-btn text-uppercase py-3 round-form r-container"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#filterMenu"
-            aria-controls="filterMenu"
-          >
-            apply
-          </button>
-        </div>
-      </div>
-      <div
-        className="offcanvas offcanvas-end"
-        tabIndex="-1"
-        id="clarityMenu"
-        aria-labelledby="clarityMenuLabel"
-      >
-        <div className="offcanvas-header py-4 p-0">
-          <div className="r-container d-flex justify-content-between align-items-center py-2">
-            <h3
-              id="clarityMenuLabel"
-              className="text-uppercase mb-0 d-flex align-items-center"
-            >
-              clarity <RiErrorWarningLine className="ms-2" />
-            </h3>
-            <button
-              type="button"
-              className="btn btn-close text-reset"
-              data-bs-dismiss="offcanvas"
-              aria-label="Close"
-            ></button>
-          </div>
-        </div>
-        <div className="offcanvas-body p-0 d-flsex flex-column justify-content-between">
-          <button
-            className="btn btn-back text-uppercase d-flex justify-content-between align-items-center px-4 py-3"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#filterMenu"
-            aria-controls="filterMenu"
-          >
-            <RiArrowLeftSLine />
-            Reset Filter
-          </button>
-          <div className="r-container row pt-4">
-            <MRange marks={clarityMarks} step={11.111} />
-          </div>
-        </div>
-        <div className="offcanvas-footer text-center pb-5">
-          <button
-            className="btn btn-apply blue-btn text-uppercase py-3 round-form r-container"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#filterMenu"
-            aria-controls="filterMenu"
-          >
-            apply
-          </button>
-        </div>
-      </div>
-      <div
-        className="offcanvas offcanvas-end"
-        tabIndex="-1"
-        id="cutMenu"
-        aria-labelledby="cutMenuLabel"
-      >
-        <div className="offcanvas-header py-4 p-0">
-          <div className="r-container d-flex justify-content-between align-items-center py-2">
-            <h3
-              id="cutMenuLabel"
-              className="text-uppercase mb-0 d-flex align-items-center"
-            >
-              cut <RiErrorWarningLine className="ms-2" />
-            </h3>
-            <button
-              type="button"
-              className="btn btn-close text-reset"
-              data-bs-dismiss="offcanvas"
-              aria-label="Close"
-            ></button>
-          </div>
-        </div>
-        <div className="offcanvas-body p-0 d-flsex flex-column justify-content-between">
-          <button
-            className="btn btn-back text-uppercase d-flex justify-content-between align-items-center px-4 py-3"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#filterMenu"
-            aria-controls="filterMenu"
-          >
-            <RiArrowLeftSLine />
-            Reset Filter
-          </button>
-          <div className="r-container row pt-4">
-            <MRange marks={cutMarks} step={25} />
+            {karats.map((item, index) => {
+              return (
+                <div className="karat-panel col-4" key={index}>
+                  <button
+                    className="btn p-0 karat-item"
+                    onClick={(event) => karatItemHandle(event, index)}
+                  >
+                    <div
+                      className={
+                        "round-form karat px-lg-4 px-5 py-2 " + item.key
+                      }
+                    >
+                      {item.karat}
+                    </div>
+                    <p className="pt-2">{item.title}</p>
+                  </button>
+                </div>
+              );
+            })}
           </div>
         </div>
         <div className="offcanvas-footer text-center pb-5">
@@ -980,7 +767,13 @@ export default function ChooseDiamond() {
         </div>
       </div>
 
-      {/* End products section */}
+      {/* Start Schedule section */}
+      <Schedule normalMode="normal-mode" />
+      {/* End Schedule section */}
+      {/* Start Footer */}
+      <Footer />
+      {/* End Footer */}
     </div>
   );
+
 }
