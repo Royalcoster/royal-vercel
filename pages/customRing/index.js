@@ -768,7 +768,7 @@ export default function ChooseSetting() {
       </div>
 
       {/* Start Schedule section */}
-      <Schedule normalMode="normal-mode" />
+      <Schedule normalMode="normal-mode" />  
       {/* End Schedule section */}
       {/* Start Footer */}
       <Footer />
