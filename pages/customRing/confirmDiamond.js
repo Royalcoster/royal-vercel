@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Head from "next/head";
-
+import Header from "../../components/header";
 import Footer from "../../components/footer";
 import Schedule from "../../components/schedule";
 //import Customer from "../../components/customer";
@@ -323,7 +323,8 @@ function ConfirmDiamond(props) {
       <Head>
         <title>ConfirmSetting | Royal Coster</title>
       </Head>
-  
+      <Header />
+
       {/* Start state section */}
       <div className="state-section">
         <div className="link-panel r-container py-3 d-sm-flex d-none align-items-center">

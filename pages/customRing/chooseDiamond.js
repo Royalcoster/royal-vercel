@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Head from "next/head";
+import Header from "../../components/header";
 import SelectSearch, { fuzzySearch } from "react-select-search-nextjs";
 import { useRouter } from "next/router";
 import MRange from "../../components/mRange";
@@ -323,6 +324,7 @@ export default function ChooseDiamond() {
       <Head>
         <title>chooseSetting | Royal Coster</title>
       </Head>
+      <Header />
       {/* Start state section */}
       <div className="state-section">
         <div className="link-panel r-container py-3 d-sm-flex d-none align-items-center">
