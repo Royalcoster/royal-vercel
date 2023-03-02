@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Head from "next/head";
-import Header from "../../components/header";
+
 import Footer from "../../components/footer";
 import Schedule from "../../components/schedule";
 import NeedHelp from "../../components/needHelp";
@@ -398,8 +398,7 @@ export default function ConfirmRing() {
       <Head>
         <title>ConfirmRing | Royal Coster</title>
       </Head>
-      <Header />
-
+    
       {/* Start state section */}
       <div className="state-section">
         <div className="link-panel  r-container py-3 d-sm-flex d-none align-items-center">
@@ -630,7 +629,7 @@ export default function ConfirmRing() {
                   htmlFor="selectKarat"
                   className="d-flex align-items-center pb-4 text-uppercase"
                 >
-                  Metal : white Gold 18k  
+                  Metal : white Gold 18k
                   <RiErrorWarningLine className="ms-2" />
                 </label>
                 <div className="material-box d-flex">

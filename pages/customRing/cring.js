@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Head from "next/head";
 import SelectSearch, { fuzzySearch } from "react-select-search-nextjs";
-import Header from "../../components/header";
 import Footer from "../../components/footer";
 import Schedule from "../../components/schedule";
 import Range from "../../components/range";
@@ -248,7 +247,6 @@ export default function ChooseSetting() {
       <Head>
         <title>chooseSetting | Royal Coster</title>
       </Head>
-      <Header />
       {/* Start hero section */}
       <div className="state-section">
         <div className="link-panel r-container py-3 d-sm-flex d-none align-items-center">
