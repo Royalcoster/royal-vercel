@@ -125,7 +125,6 @@ export default function ChooseSetting() {
       filtersUpdated = "tag:exclusiveringsettings";
 
   useEffect(() => {
-   alert("????")
     let formData = new FormData();
     formData.append("position", "first:9");
     formData.append("query",filtersUpdated);
